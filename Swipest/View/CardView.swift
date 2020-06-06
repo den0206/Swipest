@@ -15,27 +15,25 @@ enum swipeDirection : Int {
 
 class CardView : UIView {
     
+    
+    
     //MARK: - Parts
     
     private let gradientLayer = CAGradientLayer()
     
+    private let viewModel : CardViewModel
+    
     private let profileImageView : UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.image = #imageLiteral(resourceName: "kelly2")
         return iv
     }()
     
-    private let infoLabel : UILabel = {
+    private lazy var infoLabel : UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
+        label.attributedText = viewModel.userInfoText
         
-        let attributedText = NSMutableAttributedString(string: "Yuuki", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 32, weight: .heavy), NSAttributedString.Key.foregroundColor : UIColor.white])
-        
-        attributedText.append(NSMutableAttributedString(string: "  20", attributes:[NSAttributedString.Key.font : UIFont.systemFont(ofSize: 24), NSAttributedString.Key.foregroundColor : UIColor.white]))
-        
-        
-        label.attributedText = attributedText
         return label
     }()
     
@@ -46,8 +44,9 @@ class CardView : UIView {
         return button
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(viewModel: CardViewModel) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
         
         backgroundColor = .systemPurple
         layer.cornerRadius = 10
@@ -87,8 +86,8 @@ class CardView : UIView {
     
     @objc func handlePanGesture(sender : UIPanGestureRecognizer) {
         
-        
         switch sender.state {
+            
         case .began:
             superview?.subviews.forEach({ $0.layer.removeAllAnimations() })
         case .changed:
@@ -96,9 +95,8 @@ class CardView : UIView {
             panCard(sender: sender)
             
         case .ended:
-            
             resetCardPosition(sender: sender)
-            
+        
         default:
             break
         }
@@ -106,8 +104,20 @@ class CardView : UIView {
     }
     
     @objc func handleChangePhoto(sender : UITapGestureRecognizer) {
-        print("Tap")
+        /// next Picture via TapGesture
         
+        let location = sender.location(in: nil).x
+        let shouldShowNextPhoto = location > self.frame.width / 2
+        
+        
+        if shouldShowNextPhoto {
+            viewModel.showNextPhoto()
+        } else {
+            viewModel.showPreviousPhoto()
+        }
+        
+        /// change Photo
+        profileImageView.image = viewModel.imageToShow
         
     }
     
@@ -116,6 +126,10 @@ class CardView : UIView {
     private func configureGradientLayer() {
         /// add gesture
         configGestureRecoganaizer()
+        
+        /// set ViewModel
+        profileImageView.image = viewModel.user.images.first
+//        infoLabel.attributedText = viewModel.userInfoText
         
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer.locations = [0.5, 1,1]
