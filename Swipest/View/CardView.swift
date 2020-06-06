@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum swipeDirection : Int {
+    case left = -1
+    case rigt = 1
+}
+
 class CardView : UIView {
     
     //MARK: - Parts
@@ -50,7 +55,7 @@ class CardView : UIView {
         
         addSubview(profileImageView)
         profileImageView.fillSuperview()
-        
+    
         /// infolabelを見える様に為
         configureGradientLayer()
         
@@ -76,13 +81,93 @@ class CardView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+
+    
+    //MARK: - Actions
+    
+    @objc func handlePanGesture(sender : UIPanGestureRecognizer) {
+        
+        
+        switch sender.state {
+        case .began:
+            superview?.subviews.forEach({ $0.layer.removeAllAnimations() })
+        case .changed:
+            /// move card
+            panCard(sender: sender)
+            
+        case .ended:
+            
+            resetCardPosition(sender: sender)
+            
+        default:
+            break
+        }
+        
+    }
+    
+    @objc func handleChangePhoto(sender : UITapGestureRecognizer) {
+        print("Tap")
+        
+        
+    }
+    
     //MARK: - Helpers
     
     private func configureGradientLayer() {
+        /// add gesture
+        configGestureRecoganaizer()
         
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer.locations = [0.5, 1,1]
         layer.addSublayer(gradientLayer)
         
     }
+    
+    private func configGestureRecoganaizer() {
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+        addGestureRecognizer(pan)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleChangePhoto))
+        addGestureRecognizer(tap)
+        
+    }
+    
+    private func panCard(sender : UIPanGestureRecognizer) {
+        
+        /// move Cards
+        let transration = sender.translation(in: nil)
+
+        let degrees : CGFloat = transration.x / 20
+        let angle = degrees * .pi / 180
+        let rotatationalTransform = CGAffineTransform(rotationAngle: angle)
+        
+        self.transform = rotatationalTransform.translatedBy(x: transration.x, y: transration.y)
+    }
+    
+    private func resetCardPosition(sender : UIPanGestureRecognizer) {
+        
+        let direction : swipeDirection = sender.translation(in: nil).x > 100 ? .rigt : .left
+        let showldDismissCard = abs(sender.translation(in: nil).x) > 150
+        
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+            
+            if showldDismissCard {
+                
+                /// dismiss Card
+                let xTranslation = CGFloat(direction.rawValue) * 1000
+                let ofScreenTranform = self.transform.translatedBy(x: xTranslation, y: 0)
+                self.transform = ofScreenTranform
+            } else {
+                self.transform = .identity
+            }
+            
+            
+        }) { (_) in
+            
+            if showldDismissCard {
+                self.removeFromSuperview()
+            }
+        }
+    }
+    
 }
