@@ -15,6 +15,8 @@
 		3A6093032487D4B7001A7267 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6093022487D4B7001A7267 /* HomeController.swift */; };
 		3A6093072487D661001A7267 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6093062487D661001A7267 /* Extensions.swift */; };
 		3A6093092487D6B9001A7267 /* HomeNavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6093082487D6B9001A7267 /* HomeNavigationStack.swift */; };
+		3AB9F818248B1FA8000D2FBD /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9F817248B1FA8000D2FBD /* BottomControlsStackView.swift */; };
+		3AB9F81A248B2336000D2FBD /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9F819248B2336000D2FBD /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		3A6093022487D4B7001A7267 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		3A6093062487D661001A7267 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3A6093082487D6B9001A7267 /* HomeNavigationStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationStack.swift; sourceTree = "<group>"; };
+		3AB9F817248B1FA8000D2FBD /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
+		3AB9F819248B2336000D2FBD /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				3A6093082487D6B9001A7267 /* HomeNavigationStack.swift */,
+				3AB9F817248B1FA8000D2FBD /* BottomControlsStackView.swift */,
+				3AB9F819248B2336000D2FBD /* CardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,6 +195,8 @@
 				3A6093092487D6B9001A7267 /* HomeNavigationStack.swift in Sources */,
 				3A6092E82487D3F4001A7267 /* AppDelegate.swift in Sources */,
 				3A6092EA2487D3F4001A7267 /* SceneDelegate.swift in Sources */,
+				3AB9F81A248B2336000D2FBD /* CardView.swift in Sources */,
+				3AB9F818248B1FA8000D2FBD /* BottomControlsStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
