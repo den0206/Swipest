@@ -22,12 +22,30 @@ class LoginController : UIViewController {
     
     private lazy var emailTextField : UITextField = {
         
-        return configTerxtField(placehiolder: "Email", isSecureMode: true)
+        return configTerxtField(placehiolder: "Email")
     }()
     
     private lazy var passwordTextField : UITextField = {
         
         return configTerxtField(placehiolder: "password", isSecureMode: true)
+    }()
+    
+    private let loginButton : AuthButton = {
+        let button = AuthButton(title: "Login", type: .system)
+        button.addTarget( self, action: #selector(handleLogin), for: .touchUpInside)
+        return button
+        
+    }()
+    
+    private let showRegistrationButton : UIButton = {
+        let button = UIButton(type: .system)
+        let attributesText = NSMutableAttributedString(string: "アカウントを持っていませんか？", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)])
+        
+        attributesText.append(NSMutableAttributedString(string: " SIGN UP", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)]))
+        
+        button.setAttributedTitle(attributesText, for: .normal)
+        button.addTarget(self, action: #selector(handleShowUp), for: .touchUpInside)
+        return button
     }()
     
     
@@ -48,54 +66,40 @@ class LoginController : UIViewController {
         
         /// important
         navigationController?.navigationBar.barStyle = .black
-        configurGradientLayer()
+        
+        /// viewcopntroller Extension
+        configureGradientLayer()
 
         
         view.addSubview(iconImageView)
         iconImageView.centerX(inView: view)
         iconImageView.anchor(top : view.safeAreaLayoutGuide.topAnchor , paddingTop: 32)
         
-        let stack = UIStackView(arrangedSubviews: [emailTextField,passwordTextField])
+        let stack = UIStackView(arrangedSubviews: [emailTextField,passwordTextField, loginButton])
         stack.axis = .vertical
         stack.spacing = 16
         
         view.addSubview(stack)
         stack.anchor(top : iconImageView.bottomAnchor, left : view.leftAnchor, right: view.rightAnchor,paddingTop: 24,paddingLeft: 32,paddingRight: 32)
         
-    }
-    
-    func configurGradientLayer() {
+        view.addSubview(showRegistrationButton)
+        showRegistrationButton.anchor(left : view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingLeft: 32, paddingRight: 32)
         
-        let topColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
-        let bottomColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
-        gradientLayer.locations = [0,1]
-        view.layer.addSublayer(gradientLayer)
-        gradientLayer.frame = view.frame
     }
-    
+
     //MARK: - Helpers
     
-    func configTerxtField(placehiolder : String, isSecureMode : Bool) -> UITextField {
-        let tf = UITextField()
+    
+    
+    //MARK: - Actions
+    
+    @objc func handleLogin() {
+        print("Login")
+    }
+    
+    @objc func handleShowUp() {
+        let registVC = RegistrationController()
         
-        let space = UIView()
-        
-        space.setDimensions(height: 50, width: 12)
-        tf.leftView = space
-        tf.leftViewMode = .always
-        
-        tf.borderStyle = .none
-        tf.textColor = .white
-        tf.backgroundColor = UIColor(white: 1, alpha: 0.2)
-        tf.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        tf.layer.cornerRadius = 5
-        tf.attributedPlaceholder = NSAttributedString(string: placehiolder, attributes: [NSAttributedString.Key.foregroundColor : UIColor(white: 1, alpha: 0.2)])
-        tf.isSecureTextEntry = isSecureMode
-        
-        return tf
-        
+        navigationController?.pushViewController(registVC, animated: true)
     }
 }
