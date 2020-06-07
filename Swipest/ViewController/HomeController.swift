@@ -55,21 +55,26 @@ class HomeController : UIViewController {
     }
     
     private func configureCards() {
-        let user1 = User(name: "Yuuki", age: 29, images: [#imageLiteral(resourceName: "kelly1"),#imageLiteral(resourceName: "jane3")])
-        let user2 = User(name: "Ami", age: 28, images: [#imageLiteral(resourceName: "kelly3"),#imageLiteral(resourceName: "kelly2")])
         
-        
-        let cardView1 = CardView(viewModel: CardViewModel(user: user1))
-        let cardView2 = CardView(viewModel: CardViewModel(user: user2))
-        
-        
-        
-        
-        deckView.addSubview(cardView1)
-        deckView.addSubview(cardView2)
-        
-        cardView1.fillSuperview()
-        cardView2.fillSuperview()
+        Service.fetchUsers { (users) in
+            
+            print(users.count)
+        }
+//        let user1 = User(name: "Yuuki", age: 29, images: [#imageLiteral(resourceName: "kelly1"),#imageLiteral(resourceName: "jane3")])
+//        let user2 = User(name: "Ami", age: 28, images: [#imageLiteral(resourceName: "kelly3"),#imageLiteral(resourceName: "kelly2")])
+//
+//        
+//        let cardView1 = CardView(viewModel: CardViewModel(user: user1))
+//        let cardView2 = CardView(viewModel: CardViewModel(user: user2))
+//
+//
+//
+//
+//        deckView.addSubview(cardView1)
+//        deckView.addSubview(cardView2)
+//
+//        cardView1.fillSuperview()
+//        cardView2.fillSuperview()
     }
     
     //MARK: - API
@@ -84,7 +89,16 @@ class HomeController : UIViewController {
         } else {
             /// already  log ins
             
-            print("Already")
+//            fetchUser()
+        }
+    }
+    
+    func fetchUser() {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        
+        Service.fetchUser(uid: uid) { (user) in
+            
+            print(user)
         }
     }
     

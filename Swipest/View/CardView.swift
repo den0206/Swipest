@@ -128,8 +128,7 @@ class CardView : UIView {
         configGestureRecoganaizer()
         
         /// set ViewModel
-        profileImageView.image = viewModel.user.images.first
-//        infoLabel.attributedText = viewModel.userInfoText
+//        profileImageView.image = viewModel.user.images.first
         
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer.locations = [0.5, 1,1]

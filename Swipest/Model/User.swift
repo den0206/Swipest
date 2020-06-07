@@ -11,5 +11,19 @@ import UIKit
 struct User {
     var name : String
     var age : Int
-    var images : [UIImage]
+    
+    let email : String
+    let uid : String
+    let profileImageUrl : String
+    
+    init(dictionary : [String : Any]) {
+        
+        self.name = dictionary[kFULLNAME] as? String ?? ""
+        self.age = dictionary[kAGE] as? Int ?? 18
+        self.email = dictionary[kEMAIL] as? String ?? ""
+        self.uid = dictionary[kUSERID] as? String ?? ""
+        self.profileImageUrl = dictionary[kPROFILE_IMAGE] as? String ?? ""
+        
+    }
+   
 }
