@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21A4E37896CD318F4CE2E802 /* Pods_Swipest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B37C92D9DA8640305FD838 /* Pods_Swipest.framework */; };
 		3A373737248B404900FFD64D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A373736248B404900FFD64D /* User.swift */; };
 		3A373739248B410400FFD64D /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A373738248B410400FFD64D /* CardViewModel.swift */; };
 		3A37373C248B497F00FFD64D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A37373B248B497F00FFD64D /* LoginController.swift */; };
@@ -21,11 +22,18 @@
 		3A6093032487D4B7001A7267 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6093022487D4B7001A7267 /* HomeController.swift */; };
 		3A6093072487D661001A7267 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6093062487D661001A7267 /* Extensions.swift */; };
 		3A6093092487D6B9001A7267 /* HomeNavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6093082487D6B9001A7267 /* HomeNavigationStack.swift */; };
+		3A6D7C78248C819E001C74A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A6D7C77248C819E001C74A2 /* GoogleService-Info.plist */; };
+		3A8C0C43248CA2C5001B26F5 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C0C42248CA2C5001B26F5 /* Service.swift */; };
+		3A8C0C45248CA7F5001B26F5 /* Constracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C0C44248CA7F5001B26F5 /* Constracts.swift */; };
+		3A8C0C47248CAA81001B26F5 /* FirebaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C0C46248CAA81001B26F5 /* FirebaseReference.swift */; };
+		3AAF518E248CA18D00E05CD5 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAF518D248CA18D00E05CD5 /* AuthService.swift */; };
 		3AB9F818248B1FA8000D2FBD /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9F817248B1FA8000D2FBD /* BottomControlsStackView.swift */; };
 		3AB9F81A248B2336000D2FBD /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9F819248B2336000D2FBD /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10B37C92D9DA8640305FD838 /* Pods_Swipest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swipest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BD6FA33F603444F6BE90905 /* Pods-Swipest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swipest.release.xcconfig"; path = "Target Support Files/Pods-Swipest/Pods-Swipest.release.xcconfig"; sourceTree = "<group>"; };
 		3A373736248B404900FFD64D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3A373738248B410400FFD64D /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		3A37373B248B497F00FFD64D /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -42,8 +50,14 @@
 		3A6093022487D4B7001A7267 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		3A6093062487D661001A7267 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3A6093082487D6B9001A7267 /* HomeNavigationStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationStack.swift; sourceTree = "<group>"; };
+		3A6D7C77248C819E001C74A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3A8C0C42248CA2C5001B26F5 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		3A8C0C44248CA7F5001B26F5 /* Constracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constracts.swift; sourceTree = "<group>"; };
+		3A8C0C46248CAA81001B26F5 /* FirebaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReference.swift; sourceTree = "<group>"; };
+		3AAF518D248CA18D00E05CD5 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		3AB9F817248B1FA8000D2FBD /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
 		3AB9F819248B2336000D2FBD /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		ADC24F9E9B8BF9D815A8A9FB /* Pods-Swipest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swipest.debug.xcconfig"; path = "Target Support Files/Pods-Swipest/Pods-Swipest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,12 +65,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21A4E37896CD318F4CE2E802 /* Pods_Swipest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03A9DF16552B91E12A2EA624 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				10B37C92D9DA8640305FD838 /* Pods_Swipest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3A37373A248B496900FFD64D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +94,8 @@
 			children = (
 				3A6092E62487D3F3001A7267 /* Swipest */,
 				3A6092E52487D3F3001A7267 /* Products */,
+				72478B7002A77C6255AD66C1 /* Pods */,
+				03A9DF16552B91E12A2EA624 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,6 +114,7 @@
 				3A6092FD2487D41D001A7267 /* ViewModel */,
 				3A6092FB2487D406001A7267 /* View */,
 				3A6092FF2487D47A001A7267 /* ViewController */,
+				3AAF518C248CA16200E05CD5 /* API */,
 				3A6092FE2487D426001A7267 /* Helper */,
 				3A6092E72487D3F4001A7267 /* AppDelegate.swift */,
 				3A6092E92487D3F4001A7267 /* SceneDelegate.swift */,
@@ -96,6 +122,7 @@
 				3A6092F02487D3F5001A7267 /* Assets.xcassets */,
 				3A6092F22487D3F5001A7267 /* LaunchScreen.storyboard */,
 				3A6092F52487D3F5001A7267 /* Info.plist */,
+				3A6D7C77248C819E001C74A2 /* GoogleService-Info.plist */,
 			);
 			path = Swipest;
 			sourceTree = "<group>";
@@ -132,6 +159,8 @@
 			children = (
 				3A6093062487D661001A7267 /* Extensions.swift */,
 				3A3E20FE248B73F600CC8C71 /* AuthButton.swift */,
+				3A8C0C44248CA7F5001B26F5 /* Constracts.swift */,
+				3A8C0C46248CAA81001B26F5 /* FirebaseReference.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -145,6 +174,24 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		3AAF518C248CA16200E05CD5 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3AAF518D248CA18D00E05CD5 /* AuthService.swift */,
+				3A8C0C42248CA2C5001B26F5 /* Service.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		72478B7002A77C6255AD66C1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ADC24F9E9B8BF9D815A8A9FB /* Pods-Swipest.debug.xcconfig */,
+				1BD6FA33F603444F6BE90905 /* Pods-Swipest.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,9 +199,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A6092F82487D3F5001A7267 /* Build configuration list for PBXNativeTarget "Swipest" */;
 			buildPhases = (
+				60E0926FEC6DB42390690F7A /* [CP] Check Pods Manifest.lock */,
 				3A6092E02487D3F3001A7267 /* Sources */,
 				3A6092E12487D3F3001A7267 /* Frameworks */,
 				3A6092E22487D3F3001A7267 /* Resources */,
+				AF1639766641E590417DCAFA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -203,12 +252,55 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A6D7C78248C819E001C74A2 /* GoogleService-Info.plist in Resources */,
 				3A6092F42487D3F5001A7267 /* LaunchScreen.storyboard in Resources */,
 				3A6092F12487D3F5001A7267 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		60E0926FEC6DB42390690F7A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Swipest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF1639766641E590417DCAFA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Swipest/Pods-Swipest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Swipest/Pods-Swipest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swipest/Pods-Swipest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3A6092E02487D3F3001A7267 /* Sources */ = {
@@ -219,14 +311,18 @@
 				3A3E20FF248B73F600CC8C71 /* AuthButton.swift in Sources */,
 				3A6093072487D661001A7267 /* Extensions.swift in Sources */,
 				3A6093032487D4B7001A7267 /* HomeController.swift in Sources */,
+				3A8C0C45248CA7F5001B26F5 /* Constracts.swift in Sources */,
 				3A6092EC2487D3F4001A7267 /* ViewController.swift in Sources */,
 				3A6093092487D6B9001A7267 /* HomeNavigationStack.swift in Sources */,
 				3A373739248B410400FFD64D /* CardViewModel.swift in Sources */,
 				3A6092E82487D3F4001A7267 /* AppDelegate.swift in Sources */,
 				3A373737248B404900FFD64D /* User.swift in Sources */,
+				3A8C0C47248CAA81001B26F5 /* FirebaseReference.swift in Sources */,
+				3A8C0C43248CA2C5001B26F5 /* Service.swift in Sources */,
 				3A6092EA2487D3F4001A7267 /* SceneDelegate.swift in Sources */,
 				3A3E2101248B80DD00CC8C71 /* AuthViewModel.swift in Sources */,
 				3AB9F81A248B2336000D2FBD /* CardView.swift in Sources */,
+				3AAF518E248CA18D00E05CD5 /* AuthService.swift in Sources */,
 				3A37373E248B498B00FFD64D /* RegistrationController.swift in Sources */,
 				3AB9F818248B1FA8000D2FBD /* BottomControlsStackView.swift in Sources */,
 			);
@@ -362,6 +458,7 @@
 		};
 		3A6092F92487D3F5001A7267 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADC24F9E9B8BF9D815A8A9FB /* Pods-Swipest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -380,6 +477,7 @@
 		};
 		3A6092FA2487D3F5001A7267 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BD6FA33F603444F6BE90905 /* Pods-Swipest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

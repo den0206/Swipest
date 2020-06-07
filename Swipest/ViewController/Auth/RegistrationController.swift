@@ -11,6 +11,7 @@ import UIKit
 class RegistrationController : UIViewController {
     
     private var vm = RegistrationViewModel()
+    private var profileImage : UIImage?
     
     
     //MARK: - Parts
@@ -107,7 +108,27 @@ class RegistrationController : UIViewController {
     }
     
     @objc func handleSignUp() {
-        print("Sign UP")
+        
+        //MARK: - Sign UP
+        
+        guard let profileImage = profileImage else {return}
+        guard let email = emailTextField.text else {return}
+        guard let password = passwordTextField.text else {return}
+        guard let fullname = fullnameTextField.text else {return}
+        
+        let credential = AuthCredential(email: email, fullname: fullname, password: password, profileImage: profileImage)
+        
+        print(credential)
+        
+        AuthService.registerUser(credential: credential) { (error) in
+            
+            if error != nil {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            print("Regist Success")
+        }
     }
     
     @objc func handleShowIn() {
@@ -140,6 +161,9 @@ extension RegistrationController : UIImagePickerControllerDelegate, UINavigation
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         let image = info[.originalImage] as? UIImage
+        
+        self.profileImage = image
+        
         photoSelectPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         photoSelectPhotoButton.layer.borderColor = UIColor.white.cgColor
         photoSelectPhotoButton.layer.borderWidth = 3
