@@ -105,7 +105,25 @@ class LoginController : UIViewController {
     //MARK: - Actions
     
     @objc func handleLogin() {
-        print("Login")
+        
+        guard let email = emailTextField.text else {return}
+        guard let password = passwordTextField.text else {return}
+        
+        
+        AuthService.loginUser(email: email, password: password) { (result, error) in
+            
+            if error != nil {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else {return}
+            guard let homeVC = window.rootViewController as? HomeController else {return}
+            
+            homeVC.checkIfUserIsLoggedIn()
+            
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func handleShowUp() {

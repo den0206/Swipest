@@ -127,7 +127,14 @@ class RegistrationController : UIViewController {
                 return
             }
             
-            print("Regist Success")
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else {return}
+            guard let homeVC = window.rootViewController as? HomeController else {return}
+            
+            homeVC.checkIfUserIsLoggedIn()
+            
+            self.dismiss(animated: true, completion: nil)
+            
+            self.dismiss(animated: true, completion: nil)
         }
     }
     

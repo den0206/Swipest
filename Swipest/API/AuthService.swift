@@ -47,4 +47,10 @@ struct AuthService {
             
         }
     }
+    
+    static func loginUser(email : String, password : String, completion : AuthDataResultCallback? ) {
+        
+//        Auth.auth().signIn(withEmail: email, link: password, completion: completion)
+        Auth.auth().signIn(withEmail: email, password: password, completion: completion)
+    }
 }

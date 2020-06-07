@@ -45,6 +45,8 @@ func configTerxtField(placehiolder : String, isSecureMode : Bool? = false) -> UI
     tf.layer.cornerRadius = 5
     tf.attributedPlaceholder = NSAttributedString(string: placehiolder, attributes: [NSAttributedString.Key.foregroundColor : UIColor(white: 1, alpha: 0.2)])
     tf.isSecureTextEntry = isSecureMode!
+    tf.autocorrectionType = .no
+
     
     return tf
     

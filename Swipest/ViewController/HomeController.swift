@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeController : UIViewController {
     
@@ -25,8 +26,14 @@ class HomeController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        checkIfUserIsLoggedIn()
+
         configureUI()
         configureCards()
+        
+        
+//        logOut()
+        
         
     }
     
@@ -63,5 +70,40 @@ class HomeController : UIViewController {
         
         cardView1.fillSuperview()
         cardView2.fillSuperview()
+    }
+    
+    //MARK: - API
+    
+    func checkIfUserIsLoggedIn() {
+        
+        if Auth.auth().currentUser == nil {
+            
+            presentLoginVC()
+            
+            
+        } else {
+            /// already  log ins
+            
+            print("Already")
+        }
+    }
+    
+    func logOut() {
+        
+        do {
+            try Auth.auth().signOut()
+            presentLoginVC()
+        } catch {
+            print("Can't Log out")
+        }
+    }
+    
+    func presentLoginVC() {
+        DispatchQueue.main.async {
+            let loginVC = LoginController()
+            let nav = UINavigationController(rootViewController: loginVC)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true, completion: nil)
+        }
     }
 }
