@@ -8,7 +8,16 @@
 
 import UIKit
 
+protocol HomeNavigationStackViewDelegate : class{
+    func presentSettingPage()
+    func presentMessage()
+}
+
+
+
 class HomeNavigationStackView : UIStackView {
+    
+    weak var delegate : HomeNavigationStackViewDelegate?
     
     //MARK: - parts
     
@@ -31,9 +40,22 @@ class HomeNavigationStackView : UIStackView {
         distribution = .equalCentering
         isLayoutMarginsRelativeArrangement = true
         layoutMargins = .init(top: 0, left: 16, bottom: 0, right: 16)
+        
+        settingButton.addTarget(self, action: #selector(handleSetting), for: .touchUpInside)
+        messageButton.addTarget(self, action: #selector(handleMessage), for: .touchUpInside)
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Actions
+    
+    @objc func handleSetting() {
+        delegate?.presentSettingPage()
+    }
+    
+    @objc func handleMessage() {
+        delegate?.presentMessage()
     }
 }

@@ -16,7 +16,7 @@ class CardViewModel {
     
     private var imageIndex = 0
     
-    var imageToShow : UIImage?
+    let imageUrl : URL?
     
     init(user : User) {
         
@@ -29,6 +29,9 @@ class CardViewModel {
         
         
         self.userInfoText = attributedText
+        
+    
+        self.imageUrl = URL(string: user.profileImageUrl)
     }
     
     func showNextPhoto() {

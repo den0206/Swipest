@@ -11,6 +11,13 @@ import Firebase
 
 class HomeController : UIViewController {
     
+    private var viewModels = [CardViewModel]() {
+        didSet {
+            
+            configureCards()
+        }
+    }
+    
     //MARK: - Parts
     private let topStack = HomeNavigationStackView()
     
@@ -29,8 +36,7 @@ class HomeController : UIViewController {
         checkIfUserIsLoggedIn()
 
         configureUI()
-        configureCards()
-        
+
         
 //        logOut()
         
@@ -44,6 +50,8 @@ class HomeController : UIViewController {
         
         let stack = UIStackView(arrangedSubviews: [topStack ,deckView ,bottomStack])
         
+        topStack.delegate = self
+        
         stack.axis = .vertical
 
         view.addSubview(stack)
@@ -56,25 +64,15 @@ class HomeController : UIViewController {
     
     private func configureCards() {
         
-        Service.fetchUsers { (users) in
+        viewModels.forEach { (vm) in
             
-            print(users.count)
+            let cardView = CardView(viewModel: vm)
+            
+            deckView.addSubview(cardView)
+            cardView.fillSuperview()
         }
-//        let user1 = User(name: "Yuuki", age: 29, images: [#imageLiteral(resourceName: "kelly1"),#imageLiteral(resourceName: "jane3")])
-//        let user2 = User(name: "Ami", age: 28, images: [#imageLiteral(resourceName: "kelly3"),#imageLiteral(resourceName: "kelly2")])
-//
-//        
-//        let cardView1 = CardView(viewModel: CardViewModel(user: user1))
-//        let cardView2 = CardView(viewModel: CardViewModel(user: user2))
-//
-//
-//
-//
-//        deckView.addSubview(cardView1)
-//        deckView.addSubview(cardView2)
-//
-//        cardView1.fillSuperview()
-//        cardView2.fillSuperview()
+        
+
     }
     
     //MARK: - API
@@ -89,16 +87,26 @@ class HomeController : UIViewController {
         } else {
             /// already  log ins
             
-//            fetchUser()
+            fetchUsers()
+            
         }
     }
+
     
-    func fetchUser() {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        
-        Service.fetchUser(uid: uid) { (user) in
+    func fetchUsers() {
+        Service.fetchUsers { (users) in
+            self.viewModels = users.map({CardViewModel(user: $0)})
             
-            print(user)
+//            var vms = [CardViewModel]()
+//            users.forEach { (user ) in
+//                let vm = CardViewModel(user: user)
+//                vms.append(vm)
+//
+//                if users.count == vms.count {
+//
+//                    self.viewModels = vms
+//                }
+//            }
         }
     }
     
@@ -120,4 +128,22 @@ class HomeController : UIViewController {
             self.present(nav, animated: true, completion: nil)
         }
     }
+}
+
+
+extension HomeController : HomeNavigationStackViewDelegate {
+
+    func presentSettingPage() {
+        
+        let settingVC = SettingViewController()
+        
+        present(settingVC, animated: true, completion: nil)
+    }
+    
+    func presentMessage() {
+        print("Message")
+    }
+    
+    
+    
 }

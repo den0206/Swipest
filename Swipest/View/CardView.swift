@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 enum swipeDirection : Int {
     case left = -1
@@ -54,6 +55,8 @@ class CardView : UIView {
         
         addSubview(profileImageView)
         profileImageView.fillSuperview()
+        
+        profileImageView.sd_setImage(with: viewModel.imageUrl)
     
         /// infolabelを見える様に為
         configureGradientLayer()
@@ -117,7 +120,7 @@ class CardView : UIView {
         }
         
         /// change Photo
-        profileImageView.image = viewModel.imageToShow
+//        profileImageView.image = viewModel.imageToShow
         
     }
     
@@ -128,7 +131,6 @@ class CardView : UIView {
         configGestureRecoganaizer()
         
         /// set ViewModel
-//        profileImageView.image = viewModel.user.images.first
         
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer.locations = [0.5, 1,1]
