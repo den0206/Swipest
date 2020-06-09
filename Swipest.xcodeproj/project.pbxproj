@@ -28,6 +28,7 @@
 		3A8C0C47248CAA81001B26F5 /* FirebaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C0C46248CAA81001B26F5 /* FirebaseReference.swift */; };
 		3AAF518E248CA18D00E05CD5 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAF518D248CA18D00E05CD5 /* AuthService.swift */; };
 		3AB95FB8248FB66B00E99401 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB95FB7248FB66B00E99401 /* SettingViewController.swift */; };
+		3AB95FBA248FBB5500E99401 /* SettingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB95FB9248FBB5500E99401 /* SettingsHeader.swift */; };
 		3AB9F818248B1FA8000D2FBD /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9F817248B1FA8000D2FBD /* BottomControlsStackView.swift */; };
 		3AB9F81A248B2336000D2FBD /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9F819248B2336000D2FBD /* CardView.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		3A8C0C46248CAA81001B26F5 /* FirebaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReference.swift; sourceTree = "<group>"; };
 		3AAF518D248CA18D00E05CD5 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		3AB95FB7248FB66B00E99401 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		3AB95FB9248FBB5500E99401 /* SettingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeader.swift; sourceTree = "<group>"; };
 		3AB9F817248B1FA8000D2FBD /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
 		3AB9F819248B2336000D2FBD /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		ADC24F9E9B8BF9D815A8A9FB /* Pods-Swipest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swipest.debug.xcconfig"; path = "Target Support Files/Pods-Swipest/Pods-Swipest.debug.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				3A6093082487D6B9001A7267 /* HomeNavigationStack.swift */,
 				3AB9F817248B1FA8000D2FBD /* BottomControlsStackView.swift */,
 				3AB9F819248B2336000D2FBD /* CardView.swift */,
+				3AB95FB9248FBB5500E99401 /* SettingsHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				3A6093072487D661001A7267 /* Extensions.swift in Sources */,
 				3A6093032487D4B7001A7267 /* HomeController.swift in Sources */,
 				3A8C0C45248CA7F5001B26F5 /* Constracts.swift in Sources */,
+				3AB95FBA248FBB5500E99401 /* SettingsHeader.swift in Sources */,
 				3A6092EC2487D3F4001A7267 /* ViewController.swift in Sources */,
 				3A6093092487D6B9001A7267 /* HomeNavigationStack.swift in Sources */,
 				3A373739248B410400FFD64D /* CardViewModel.swift in Sources */,
