@@ -31,6 +31,8 @@
 		3AB95FBA248FBB5500E99401 /* SettingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB95FB9248FBB5500E99401 /* SettingsHeader.swift */; };
 		3AB9F818248B1FA8000D2FBD /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9F817248B1FA8000D2FBD /* BottomControlsStackView.swift */; };
 		3AB9F81A248B2336000D2FBD /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9F819248B2336000D2FBD /* CardView.swift */; };
+		3ADBD0CB2490EF9F00F24BA8 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADBD0CA2490EF9F00F24BA8 /* SettingCell.swift */; };
+		3ADBD0CD2490F0F700F24BA8 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADBD0CC2490F0F700F24BA8 /* SettingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		3AB95FB9248FBB5500E99401 /* SettingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeader.swift; sourceTree = "<group>"; };
 		3AB9F817248B1FA8000D2FBD /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
 		3AB9F819248B2336000D2FBD /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		3ADBD0CA2490EF9F00F24BA8 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		3ADBD0CC2490F0F700F24BA8 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		ADC24F9E9B8BF9D815A8A9FB /* Pods-Swipest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swipest.debug.xcconfig"; path = "Target Support Files/Pods-Swipest/Pods-Swipest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +142,7 @@
 				3AB9F817248B1FA8000D2FBD /* BottomControlsStackView.swift */,
 				3AB9F819248B2336000D2FBD /* CardView.swift */,
 				3AB95FB9248FBB5500E99401 /* SettingsHeader.swift */,
+				3ADBD0CA2490EF9F00F24BA8 /* SettingCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 			children = (
 				3A373738248B410400FFD64D /* CardViewModel.swift */,
 				3A3E2100248B80DD00CC8C71 /* AuthViewModel.swift */,
+				3ADBD0CC2490F0F700F24BA8 /* SettingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -324,6 +330,7 @@
 				3A373739248B410400FFD64D /* CardViewModel.swift in Sources */,
 				3A6092E82487D3F4001A7267 /* AppDelegate.swift in Sources */,
 				3A373737248B404900FFD64D /* User.swift in Sources */,
+				3ADBD0CB2490EF9F00F24BA8 /* SettingCell.swift in Sources */,
 				3A8C0C47248CAA81001B26F5 /* FirebaseReference.swift in Sources */,
 				3A8C0C43248CA2C5001B26F5 /* Service.swift in Sources */,
 				3A6092EA2487D3F4001A7267 /* SceneDelegate.swift in Sources */,
@@ -331,6 +338,7 @@
 				3AB9F81A248B2336000D2FBD /* CardView.swift in Sources */,
 				3AAF518E248CA18D00E05CD5 /* AuthService.swift in Sources */,
 				3AB95FB8248FB66B00E99401 /* SettingViewController.swift in Sources */,
+				3ADBD0CD2490F0F700F24BA8 /* SettingViewModel.swift in Sources */,
 				3A37373E248B498B00FFD64D /* RegistrationController.swift in Sources */,
 				3AB9F818248B1FA8000D2FBD /* BottomControlsStackView.swift in Sources */,
 			);

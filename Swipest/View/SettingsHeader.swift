@@ -9,20 +9,28 @@
 
 import UIKit
 
+protocol SettingsHeaderDelegate : class {
+    func selectingPhoto(_ header : SettingsHeaderView, didSelect index : Int)
+}
+
 class SettingsHeaderView : UIView {
+    
+    weak var delegate : SettingsHeaderDelegate?
     
     //MARK: - Parts
     
     var buttons = [UIButton]()
+    lazy var button1 = createButton(0)
+    lazy var button2 = createButton(1)
+    lazy var button3 = createButton(2)
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .systemRed
+        backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
-        let button1 = createButton()
-        let button2 = createButton()
-        let button3 = createButton()
+        buttons = [button1,button2,button3]
         
         addSubview(button1)
         button1.anchor(top : topAnchor, left :leftAnchor,bottom: bottomAnchor,paddingTop: 16,paddingLeft: 16,paddingBottom: 16)
@@ -47,7 +55,7 @@ class SettingsHeaderView : UIView {
     
     //MARK: - Helpers
     
-    func createButton() -> UIButton{
+    func createButton(_ index : Int) -> UIButton{
         
         let button = UIButton(type: .system)
         button.setTitle("Photo", for: .normal)
@@ -57,13 +65,14 @@ class SettingsHeaderView : UIView {
         button.clipsToBounds = true
         button.backgroundColor = .white
         button.imageView?.contentMode = .scaleAspectFill
+        button.tag = index
         
         return button
     }
     
     //MARK: - Actions
     
-    @objc func selectPhoto() {
-        
+    @objc func selectPhoto(sender : UIButton) {
+        delegate?.selectingPhoto(self, didSelect: sender.tag)
     }
 }
