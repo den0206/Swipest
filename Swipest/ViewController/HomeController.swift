@@ -18,6 +18,8 @@ class HomeController : UIViewController {
         }
     }
     
+    private var user : User?
+    
     //MARK: - Parts
     private let topStack = HomeNavigationStackView()
     
@@ -89,6 +91,17 @@ class HomeController : UIViewController {
             
             fetchUsers()
             
+            /// current
+            fetchUser()
+            
+        }
+    }
+    
+    private func fetchUser() {
+        guard let currentId = Auth.auth().currentUser?.uid else {return}
+        Service.fetchUser(uid: currentId) { (user) in
+            
+            self.user = user
         }
     }
 
@@ -135,7 +148,9 @@ extension HomeController : HomeNavigationStackViewDelegate {
 
     func presentSettingPage() {
         
-        let settingVC = SettingViewController()
+        guard let user = self.user else {return}
+        
+        let settingVC = SettingViewController(user: user)
         
         let nav = UINavigationController(rootViewController: settingVC)
         nav.modalPresentationStyle = .fullScreen

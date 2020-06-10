@@ -13,7 +13,7 @@ enum settingSections : Int, CaseIterable{
     case profession
     case age
     case bio
-    case agerTange
+    case ageRange
     
     var description : String {
         switch self {
@@ -26,7 +26,7 @@ enum settingSections : Int, CaseIterable{
             return "Age"
         case .bio:
             return "Bio"
-        case .agerTange:
+        case .ageRange:
             return "Seeking Age Range"
         }
     }
@@ -35,4 +35,39 @@ enum settingSections : Int, CaseIterable{
 
 struct SettingViewModel {
     
+    private let user : User
+    private let section : settingSections
+    
+    var shoulHideInputField : Bool {
+        return section == .ageRange
+    }
+    
+    var shoulHideSlidr : Bool {
+        return section != .ageRange
+    }
+    
+    let placeHolderText : String
+    var value : String?
+    
+    init(user : User, section : settingSections) {
+        
+        self.user = user
+        self.section = section
+        
+        placeHolderText = "Enter \(section.description)"
+        
+        switch section {
+       
+        case .name:
+            value = user.name
+        case .profession:
+            value = user.profession
+        case .age:
+            value = "\(user.age)"
+        case .bio:
+            value = user.bio
+        case .ageRange:
+            break
+        }
+    }
 }

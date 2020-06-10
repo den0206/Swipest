@@ -15,7 +15,18 @@ class SettingViewController : UITableViewController {
     
     private let headerView = SettingsHeaderView()
     private var imageIndex = 0
-
+    
+    private let user : User
+    
+    init(user :User) {
+        self.user = user
+        super.init(style: .plain)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +57,8 @@ class SettingViewController : UITableViewController {
         headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 300)
         
         tableView.register(SettingCell.self, forCellReuseIdentifier: reuseIdentifer)
-        tableView.rowHeight = 60
+ 
+        tableView.backgroundColor = .systemBackground
         
         
     }
@@ -73,14 +85,27 @@ extension SettingViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifer, for: indexPath) as! SettingCell
         
+        guard let section = settingSections(rawValue: indexPath.section) else {return cell}
+        let viewModel = SettingViewModel(user: user, section: section)
+        
+        cell.viewModel = viewModel
         return cell
+        
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let section = settingSections(rawValue: indexPath.section) else {return 0}
+        
+        return section == .ageRange ? 96 : 45
+        
         
     }
     
@@ -95,6 +120,8 @@ extension SettingViewController {
         return section.description
         
     }
+    
+    
 }
 
 //MARK: - Imagepicker Delegats
