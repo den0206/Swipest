@@ -151,6 +151,7 @@ extension HomeController : HomeNavigationStackViewDelegate {
         guard let user = self.user else {return}
         
         let settingVC = SettingViewController(user: user)
+        settingVC.delegate = self
         
         let nav = UINavigationController(rootViewController: settingVC)
         nav.modalPresentationStyle = .fullScreen
@@ -161,6 +162,17 @@ extension HomeController : HomeNavigationStackViewDelegate {
         print("Message")
     }
     
+    
+    
+}
+
+extension HomeController : SettingViewControllerDelegate {
+    func settingController(_ controller: SettingViewController, user: User) {
+        
+        /// update
+        controller.dismiss(animated: true, completion: nil)
+        self.user = user
+    }
     
     
 }

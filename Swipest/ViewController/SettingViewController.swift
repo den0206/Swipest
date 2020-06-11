@@ -11,12 +11,18 @@ import UIKit
 private let headerIdentifer = "headerIdetifer"
 private let reuseIdentifer = "SettingCell"
 
+protocol SettingViewControllerDelegate : class {
+    func settingController(_ controller : SettingViewController, user : User)
+}
+
 class SettingViewController : UITableViewController {
     
     private let headerView = SettingsHeaderView()
     private var imageIndex = 0
     
-    private let user : User
+    private var user : User
+    
+    weak var delegate : SettingViewControllerDelegate?
     
     init(user :User) {
         self.user = user
@@ -70,7 +76,10 @@ class SettingViewController : UITableViewController {
     }
     
     @objc func handleDone() {
-        print("Done")
+        /// for endEditing
+        view.endEditing(true)
+        
+        delegate?.settingController(self, user: user)
     }
     
     
@@ -95,6 +104,7 @@ extension SettingViewController {
         guard let section = settingSections(rawValue: indexPath.section) else {return cell}
         let viewModel = SettingViewModel(user: user, section: section)
         
+        cell.delegate = self
         cell.viewModel = viewModel
         return cell
         
@@ -149,6 +159,45 @@ extension SettingViewController : SettingsHeaderDelegate , UIImagePickerControll
         dismiss(animated: true, completion: nil)
         
     }
+    
+}
+
+extension SettingViewController : SettingCellDelegate {
+   
+    
+    func updateUserInfo(_ cell: SettingCell, value: String, sectin: settingSections) {
+        
+        switch sectin {
+            
+        case .name:
+            user.name = value
+        case .profession:
+            user.profession = value
+        case .age:
+            user.age = Int(value) ?? user.age
+        case .bio:
+            user.bio = value
+        case .ageRange:
+            break
+        }
+        
+    }
+    
+    
+    func updateAgeRange(_ cell: SettingCell, sender: UISlider) {
+        
+        /// update Age
+        if sender == cell.minAgeSlider {
+            user.minSeekingAge = Int(sender.value)
+        } else {
+            user.maxSeekingAge = Int(sender.value)
+        }
+    }
+    
+
+    
+  
+    
     
 }
 

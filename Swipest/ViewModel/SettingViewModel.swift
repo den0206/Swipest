@@ -36,7 +36,11 @@ enum settingSections : Int, CaseIterable{
 struct SettingViewModel {
     
     private let user : User
-    private let section : settingSections
+    let section : settingSections
+    
+    
+    let placeHolderText : String
+    var value : String?
     
     var shoulHideInputField : Bool {
         return section == .ageRange
@@ -46,8 +50,25 @@ struct SettingViewModel {
         return section != .ageRange
     }
     
-    let placeHolderText : String
-    var value : String?
+    var minAgeSliderValue : Float {
+        let min = user.minSeekingAge
+        return Float(min)
+    }
+    
+    var maxAgeSliderValue : Float {
+        let max = user.maxSeekingAge
+        return Float(max)
+    }
+    
+    func minAgeLabelText(value : Float) -> String {
+        return "Min: \(Int(value))"
+    }
+    
+    func maxAgeLabelText(value : Float) -> String {
+        return "Max: \(Int(value))"
+
+    }
+  
     
     init(user : User, section : settingSections) {
         
