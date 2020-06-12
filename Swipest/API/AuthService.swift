@@ -38,7 +38,7 @@ struct AuthService {
                     kEMAIL : credential.email,
                     kFULLNAME : credential.password,
                     kUSERID : uid,
-                    kPROFILE_IMAGE : imageUrl,
+                    kPROFILE_IMAGES : [imageUrl],
                     kAGE : 18
                     ] as [String : Any]
                 

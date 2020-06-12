@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 private let headerIdentifer = "headerIdetifer"
 private let reuseIdentifer = "SettingCell"
 
 protocol SettingViewControllerDelegate : class {
     func settingController(_ controller : SettingViewController, user : User)
+    func handleLogout(_ controller : SettingViewController)
 }
 
 class SettingViewController : UITableViewController {
     
-    private let headerView = SettingsHeaderView()
+    lazy var headerView = SettingsHeaderView(user: user)
+    private let footerView = SettingFooterView()
     private var imageIndex = 0
     
     private var user : User
@@ -39,6 +42,8 @@ class SettingViewController : UITableViewController {
         
         configureUI()
         configureTableView()
+        
+        print(user)
     }
     
     //MARK: -UI
@@ -59,9 +64,14 @@ class SettingViewController : UITableViewController {
         tableView.separatorStyle = .none
         
         tableView.tableHeaderView = headerView
-        headerView.delegate = self
-        headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 300)
+        tableView.tableFooterView = footerView
         
+        headerView.delegate = self
+        footerView.delegate = self
+
+        headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 300)
+        footerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 80)
+
         tableView.register(SettingCell.self, forCellReuseIdentifier: reuseIdentifer)
  
         tableView.backgroundColor = .systemBackground
@@ -79,7 +89,29 @@ class SettingViewController : UITableViewController {
         /// for endEditing
         view.endEditing(true)
         
-        delegate?.settingController(self, user: user)
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Uploading..."
+        hud.show(in: view)
+        
+        Service.saveUserDate(user: user) { (error) in
+            self.delegate?.settingController(self, user: self.user)
+
+        }
+    }
+    
+    //MARK: -API
+    
+    func uploadImage(image : UIImage) {
+        
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Uploading..."
+        hud.show(in: view)
+        
+        ///insert index
+        Service.uploadImage(image: image) { (imageUrl) in
+            self.user.profileImageUrl.append(imageUrl)
+            hud.dismiss()
+        }
     }
     
     
@@ -150,11 +182,12 @@ extension SettingViewController : SettingsHeaderDelegate , UIImagePickerControll
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        let selectedImage = info[.originalImage] as? UIImage
+        guard let selectedImage = info[.originalImage] as? UIImage else {return}
         
-        headerView.buttons[imageIndex].setImage(selectedImage?.withRenderingMode(.alwaysOriginal), for: .normal)
+        headerView.buttons[imageIndex].setImage(selectedImage.withRenderingMode(.alwaysOriginal), for: .normal)
         
         /// update Photo
+        uploadImage(image: selectedImage)
         
         dismiss(animated: true, completion: nil)
         
@@ -194,10 +227,11 @@ extension SettingViewController : SettingCellDelegate {
         }
     }
     
-
-    
-  
-    
-    
 }
 
+extension SettingViewController : SettingFooterViewDelegate {
+    func handleLogout() {
+        delegate?.handleLogout(self)
+    }
+
+}

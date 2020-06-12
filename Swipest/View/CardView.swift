@@ -132,6 +132,8 @@ class CardView : UIView {
         
         /// set ViewModel
         
+        profileImageView.sd_setImage(with: viewModel.imageUrl)
+        
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer.locations = [0.5, 1,1]
         layer.addSublayer(gradientLayer)

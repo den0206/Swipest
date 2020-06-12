@@ -167,6 +167,11 @@ extension HomeController : HomeNavigationStackViewDelegate {
 }
 
 extension HomeController : SettingViewControllerDelegate {
+    func handleLogout(_ controller: SettingViewController) {
+        controller.dismiss(animated: true, completion: nil)
+        logOut()
+    }
+    
     func settingController(_ controller: SettingViewController, user: User) {
         
         /// update

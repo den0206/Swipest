@@ -12,7 +12,7 @@ import Firebase
 
 
 public let kSTOROGE_REF = Storage.storage().reference()
-public let kSTOROGE_PROFILE_REF = kSTOROGE_REF.child(kPROFILE_IMAGE)
+public let kSTOROGE_PROFILE_REF = kSTOROGE_REF.child(kPROFILE_IMAGES)
 
 
 //MARK: - User
@@ -20,7 +20,7 @@ public let kSTOROGE_PROFILE_REF = kSTOROGE_REF.child(kPROFILE_IMAGE)
 public let kUSERID = "userID"
 public let kEMAIL = "email"
 public let kPASSWORD = "password"
-public let kPROFILE_IMAGE = "profileImage"
+public let kPROFILE_IMAGES = "profileImages"
 public let kFULLNAME = "fullname"
 public let kBIO = "bio"
 public let kPROFESSION = "profession"

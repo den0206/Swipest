@@ -59,6 +59,26 @@ struct Service {
     
     //MARK: - Helpers
     
+    static func saveUserDate(user : User, completion :  @escaping(Error?) -> Void) {
+        
+        print(user)
+        let date = [kUSERID :user.uid,
+                    kFULLNAME : user.name,
+                    kPROFILE_IMAGES : user.profileImageUrl,
+                    kAGE : user.age,
+                    kBIO : user.bio,
+                    kPROFESSION : user.profession,
+                    kMIMSEEKING : user.minSeekingAge,
+                    kMAXSEEKING : user.maxSeekingAge
+            ] as [String : Any]
+        
+//        print(date)
+        
+        firebaseReference(.User).document(user.uid).updateData(date, completion: completion)
+        
+    }
+    
+    
     static func uploadImage(image : UIImage, completion :  @escaping(String) -> Void) {
         
         guard let imageData = image.jpegData(compressionQuality: 0.3) else {return}
