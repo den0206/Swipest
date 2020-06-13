@@ -13,6 +13,9 @@ class ProfileController : UIViewController {
     
     let user : User
     
+    private lazy var viewModel = ProfileViewModel(user : user)
+    private lazy var barStackView = SegmentStackView(numberOfSections: viewModel.imageURLs.count)
+    
     //MARK: - Parts
     private lazy var collectioView : UICollectionView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width + 100)
@@ -41,13 +44,12 @@ class ProfileController : UIViewController {
     private let infoLabel : UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Name - 22"
         label.font = UIFont.boldSystemFont(ofSize: 20)
 
         return label
     }()
     
-    private let prpfessionLabel : UILabel = {
+    private let profossionLabel : UILabel = {
         let label = UILabel()
         label.text = "profesison"
         label.font = UIFont.systemFont(ofSize: 20)
@@ -99,6 +101,8 @@ class ProfileController : UIViewController {
         
         configureUI()
         
+        loadUserDate()
+
     }
     
     //MARK: - UI
@@ -113,7 +117,7 @@ class ProfileController : UIViewController {
         view.addSubview(dismissButton)
         dismissButton.anchor(top : collectioView.bottomAnchor,right: view.rightAnchor,paddingTop: -20,paddingRight:  16)
         
-        let infoStack = UIStackView(arrangedSubviews: [infoLabel,prpfessionLabel,bioLabel])
+        let infoStack = UIStackView(arrangedSubviews: [infoLabel,profossionLabel,bioLabel])
         infoStack.axis = .vertical
         infoStack.spacing = 4
         
@@ -121,6 +125,8 @@ class ProfileController : UIViewController {
         infoStack.anchor(top : collectioView.bottomAnchor, left: view.leftAnchor,right: view.rightAnchor,paddingTop: 12, paddingLeft: 12,paddingRight: 12)
         
         configureBottomControls()
+        
+        configureBarStackView()
         
     }
     
@@ -136,6 +142,12 @@ class ProfileController : UIViewController {
         stack.anchor(bottom : view.safeAreaLayoutGuide.bottomAnchor,paddingBottom: 32)
     }
     
+    private func configureBarStackView() {
+        view.addSubview(barStackView)
+        barStackView.anchor(top : view.topAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 56,paddingLeft: 8,paddingRight: 8,height: 4)
+        
+    }
+    
     func createButton(image : UIImage) -> UIButton {
         
         let button = UIButton(type: .system)
@@ -143,6 +155,13 @@ class ProfileController : UIViewController {
         button.imageView?.contentMode = .scaleAspectFill
 
         return button
+    }
+    
+    func loadUserDate() {
+        infoLabel.attributedText = viewModel.userDetailAttributeString
+        
+        profossionLabel.text = viewModel.professerString
+        bioLabel.text = viewModel.bioString
     }
     
     //MARK: - Actions
@@ -169,13 +188,19 @@ class ProfileController : UIViewController {
 extension ProfileController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return user.profileImageUrl.count
+        return viewModel.itemCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifer, for: indexPath) as! ProfileCell
         
+        cell.imageView.sd_setImage(with: viewModel.imageURLs[indexPath.row])
+        
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        barStackView.setHighLighted(index: indexPath.row)
     }
     
     

@@ -10,13 +10,21 @@ import UIKit
 
 class ProfileCell : UICollectionViewCell {
     
+   
     //MARK: - Parts
+    let imageView : UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        return iv
+    }()
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .blue
+        
+        addSubview(imageView)
+        imageView.fillSuperview()
     }
     
     required init?(coder: NSCoder) {
