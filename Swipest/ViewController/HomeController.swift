@@ -70,6 +70,7 @@ class HomeController : UIViewController {
             
             let cardView = CardView(viewModel: vm)
             
+            cardView.delegate = self
             deckView.addSubview(cardView)
             cardView.fillSuperview()
         }
@@ -166,6 +167,18 @@ extension HomeController : HomeNavigationStackViewDelegate {
     
 }
 
+extension HomeController : CardViewDelegate {
+    func handleShowProfile(view: CardView, user: User) {
+        
+        let profileVC = ProfileController(user: user)
+        profileVC.modalPresentationStyle = .fullScreen
+        
+        present(profileVC, animated: true, completion: nil)
+    }
+    
+    
+}
+
 extension HomeController : SettingViewControllerDelegate {
     func handleLogout(_ controller: SettingViewController) {
         controller.dismiss(animated: true, completion: nil)
@@ -181,3 +194,5 @@ extension HomeController : SettingViewControllerDelegate {
     
     
 }
+
+

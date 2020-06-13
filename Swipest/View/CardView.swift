@@ -14,13 +14,18 @@ enum swipeDirection : Int {
     case rigt = 1
 }
 
+protocol CardViewDelegate : class {
+    func handleShowProfile(view : CardView, user : User)
+}
+
 class CardView : UIView {
     
-    
+    weak var delegate : CardViewDelegate?
     
     //MARK: - Parts
     
     private let gradientLayer = CAGradientLayer()
+    private let barStackView = UIStackView()
     
     private let viewModel : CardViewModel
     
@@ -41,6 +46,7 @@ class CardView : UIView {
     private lazy var infoButton : UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "info_icon").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleInfo), for: .touchUpInside)
         
         return button
     }()
@@ -57,9 +63,11 @@ class CardView : UIView {
         profileImageView.fillSuperview()
         
         profileImageView.sd_setImage(with: viewModel.imageUrl)
-    
+        
+        configureBarStackVIew()
         /// infolabelを見える様に為
         configureGradientLayer()
+        
         
         addSubview(infoLabel)
         infoLabel.anchor(left : leftAnchor, bottom: bottomAnchor, right: rightAnchor,paddingLeft: 16,paddingBottom: 16,paddingRight: 16)
@@ -86,6 +94,11 @@ class CardView : UIView {
 
     
     //MARK: - Actions
+    
+    @objc func handleInfo() {
+        
+        delegate?.handleShowProfile(view: self, user: viewModel.user)
+    }
     
     @objc func handlePanGesture(sender : UIPanGestureRecognizer) {
         
@@ -122,9 +135,34 @@ class CardView : UIView {
         /// change Photo
 //        profileImageView.image = viewModel.imageToShow
         
+        profileImageView.sd_setImage(with: viewModel.imageUrl)
+        
+        barStackView.arrangedSubviews.forEach({$0.backgroundColor = .barDeselectedColor})
+        barStackView.arrangedSubviews[viewModel.index].backgroundColor = .white
+        
     }
     
     //MARK: - Helpers
+    
+    private func configureBarStackVIew() {
+        
+        (0 ..< viewModel.imageUrls.count).forEach { (_) in
+            
+            let barView = UIView()
+            barView.backgroundColor = UIColor.barDeselectedColor
+            
+            barStackView.addArrangedSubview(barView)
+        }
+        
+        barStackView.arrangedSubviews.first?.backgroundColor = .white
+        
+        addSubview(barStackView)
+        barStackView.anchor(top : topAnchor,left: leftAnchor,right: rightAnchor,paddingTop: 8,paddingLeft: 8,paddingRight: 8,height: 4)
+        
+        barStackView.spacing = 4
+        barStackView.distribution = .fillEqually
+        
+    }
     
     private func configureGradientLayer() {
         /// add gesture
