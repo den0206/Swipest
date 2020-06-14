@@ -99,7 +99,6 @@ class HomeController : UIViewController {
         }) { (_) in
             self.topCardView?.removeFromSuperview()
             
-            guard let topCard = self.topCardView else {return}
             
             guard !self.cardViews.isEmpty else {return}
             
@@ -198,9 +197,24 @@ extension HomeController : HomeNavigationStackViewDelegate {
 }
 
 extension HomeController : CardViewDelegate {
+    
+    /// swipe like
+    func handleLikeCation(view: CardView, didLikeUser: Bool) {
+        
+        view.removeFromSuperview()
+        /// remov self cardViews
+        self.cardViews.removeAll(where: {view == $0})
+        
+        guard let user = topCardView?.viewModel.user else {return}
+        Service.saveSwipe(user: user, isLike: didLikeUser)
+        
+        self.topCardView = cardViews.last
+    }
+    
     func handleShowProfile(view: CardView, user: User) {
         
         let profileVC = ProfileController(user: user)
+        profileVC.delegate = self
         profileVC.modalPresentationStyle = .fullScreen
         
         present(profileVC, animated: true, completion: nil)
@@ -257,6 +271,35 @@ extension HomeController : BottomControlsStackViewDelegate {
     
     func handleRefresh() {
         print("Refresh")
+    }
+    
+    
+}
+
+//MARK: - Profile Conrtroller Delegate
+
+extension HomeController : ProfileControllerDelegate {
+    func handleLike(profileVC: ProfileController, likeUser: User) {
+        
+        /// profile Button
+        profileVC.dismiss(animated: true) {
+            self.performSwipeAnimation(sholdLIke: true)
+
+            Service.saveSwipe(user: likeUser, isLike: true)
+        }
+
+    }
+    
+    func handleDisLike(profileVC: ProfileController, disLikeUser: User) {
+        
+        profileVC.dismiss(animated: true) {
+            
+            self.performSwipeAnimation(sholdLIke: false)
+
+            Service.saveSwipe(user: disLikeUser, isLike: false)
+
+        }
+
     }
     
     

@@ -9,7 +9,17 @@
 import UIKit
 
 private let reuseIdentifer = "ProfileCell"
+
+protocol ProfileControllerDelegate : class {
+    func handleLike(profileVC : ProfileController, likeUser : User)
+    func handleDisLike(profileVC : ProfileController, disLikeUser : User)
+
+    
+}
+
 class ProfileController : UIViewController {
+    
+    weak var delegate :ProfileControllerDelegate?
     
     let user : User
     
@@ -182,15 +192,15 @@ class ProfileController : UIViewController {
     /// buttons Actiuon
     
     @objc func handleDisLike() {
-        
+        delegate?.handleDisLike(profileVC: self, disLikeUser: user)
     }
     
     @objc func handleSuperLike() {
-        
     }
     
     @objc func handleLike() {
-        
+        delegate?.handleLike(profileVC: self, likeUser: user)
+
     }
 }
 
