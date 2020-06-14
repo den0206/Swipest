@@ -35,6 +35,7 @@
 		3AB95FBA248FBB5500E99401 /* SettingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB95FB9248FBB5500E99401 /* SettingsHeader.swift */; };
 		3AB9F818248B1FA8000D2FBD /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9F817248B1FA8000D2FBD /* BottomControlsStackView.swift */; };
 		3AB9F81A248B2336000D2FBD /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9F819248B2336000D2FBD /* CardView.swift */; };
+		3AD7371324964FBA00594B13 /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD7371224964FBA00594B13 /* MatchView.swift */; };
 		3ADAC32224950286006E2F2C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAC32124950286006E2F2C /* ProfileViewModel.swift */; };
 		3ADBD0CB2490EF9F00F24BA8 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADBD0CA2490EF9F00F24BA8 /* SettingCell.swift */; };
 		3ADBD0CD2490F0F700F24BA8 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADBD0CC2490F0F700F24BA8 /* SettingViewModel.swift */; };
@@ -72,6 +73,7 @@
 		3AB95FB9248FBB5500E99401 /* SettingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeader.swift; sourceTree = "<group>"; };
 		3AB9F817248B1FA8000D2FBD /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
 		3AB9F819248B2336000D2FBD /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		3AD7371224964FBA00594B13 /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
 		3ADAC32124950286006E2F2C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		3ADBD0CA2490EF9F00F24BA8 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		3ADBD0CC2490F0F700F24BA8 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				3A0499672493D98A00851FF9 /* SettingFooterView.swift */,
 				3A4A8C8F2494C4740038E3F6 /* ProfileCell.swift */,
 				3A3694F62495095800BBF74F /* SegmentBarView .swift */,
+				3AD7371224964FBA00594B13 /* MatchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				3A8C0C43248CA2C5001B26F5 /* Service.swift in Sources */,
 				3A6092EA2487D3F4001A7267 /* SceneDelegate.swift in Sources */,
 				3A3E2101248B80DD00CC8C71 /* AuthViewModel.swift in Sources */,
+				3AD7371324964FBA00594B13 /* MatchView.swift in Sources */,
 				3AB9F81A248B2336000D2FBD /* CardView.swift in Sources */,
 				3AAF518E248CA18D00E05CD5 /* AuthService.swift in Sources */,
 				3A4A8C902494C4740038E3F6 /* ProfileCell.swift in Sources */,

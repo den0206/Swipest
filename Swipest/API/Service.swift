@@ -47,7 +47,7 @@ struct Service {
                     let user = User(dictionary: dic)
                     
                     /// expect currentUser
-                    guard user.uid != Auth.auth().currentUser?.uid else { return }
+                    guard user.uid != Auth.auth().currentUser?.uid else { continue }
                     
                     users.append(user)
                     
@@ -88,12 +88,10 @@ struct Service {
     }
     
     
-    static func saveSwipe(user : User, isLike : Bool) {
+    static func saveSwipe(user : User, isLike : Bool, completion : ((Error?) -> Void)?) {
         
         guard let uid = Auth.auth().currentUser?.uid else {return}
-        
-//        let shouldLike = isLike ? 1 : 0
-        
+                
         firebaseReference(.Swipe).document(uid).getDocument { (snapshot, error) in
             
             let date = [user.uid : isLike]
@@ -101,12 +99,28 @@ struct Service {
             guard let snapshot = snapshot else {return}
             
             if snapshot.exists {
-                firebaseReference(.Swipe).document(uid).updateData(date)
+                firebaseReference(.Swipe).document(uid).updateData(date, completion: completion)
             } else {
-                firebaseReference(.Swipe).document(uid).setData(date)
+                firebaseReference(.Swipe).document(uid).setData(date,completion: completion)
 
             }
         }
+    }
+    
+    static func checkMatchExist(user : User, complation :  @escaping(Bool) -> Void) {
+        
+        guard let currentuid = Auth.auth().currentUser?.uid else {return}
+        
+        firebaseReference(.Swipe).document(user.uid).getDocument { (snapshot, error) in
+            
+            guard let date = snapshot?.data() else {return}
+            
+            /// return no Match
+            guard let didMatch = date[currentuid] as? Bool else {return}
+            complation(didMatch)
+            
+        }
+        
     }
     
     static func uploadImage(image : UIImage, completion :  @escaping(String) -> Void) {
