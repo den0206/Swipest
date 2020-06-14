@@ -56,7 +56,8 @@ class CardView : UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
-        backgroundColor = .systemPurple
+        backgroundColor = .white
+        
         layer.cornerRadius = 10
         clipsToBounds = true
         

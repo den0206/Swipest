@@ -26,11 +26,17 @@ struct Service {
         }
     }
     
-    static func fetchUsers(completion :  @escaping([User]) -> Void) {
+    static func fetchUsers(currentUser : User, completion :  @escaping([User]) -> Void) {
         
         var users = [User]()
         
-        firebaseReference(.User).getDocuments { (snapshot, error) in
+        /// filter
+        let minAge = currentUser.minSeekingAge
+        let maxAge = currentUser.maxSeekingAge
+        
+        let query = firebaseReference(.User).whereField(kAGE, isGreaterThanOrEqualTo:  minAge).whereField(kAGE, isLessThanOrEqualTo : maxAge)
+        
+        query.getDocuments { (snapshot, error) in
             
             guard let snapshot = snapshot else {return}
             
@@ -40,10 +46,13 @@ struct Service {
                     let dic = doc.data()
                     let user = User(dictionary: dic)
                     
+                    /// expect currentUser
+                    guard user.uid != Auth.auth().currentUser?.uid else { return }
+                    
                     users.append(user)
                     
                     /// avoid multipleTime
-                    if users.count == snapshot.documents.count {
+                    if users.count  == snapshot.documents.count - 1 {
                         completion(users)
                     }
                     

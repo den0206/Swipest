@@ -12,6 +12,7 @@ class RegistrationController : UIViewController {
     
     private var vm = RegistrationViewModel()
     private var profileImage : UIImage?
+    weak var delegate : AuthDelegate?
     
     
     //MARK: - Parts
@@ -132,9 +133,9 @@ class RegistrationController : UIViewController {
             
             homeVC.checkIfUserIsLoggedIn()
             
+            self.delegate?.AuthComplete()
             self.dismiss(animated: true, completion: nil)
             
-            self.dismiss(animated: true, completion: nil)
         }
     }
     

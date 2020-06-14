@@ -8,10 +8,14 @@
 
 import UIKit
 
+protocol AuthDelegate : class {
+    func AuthComplete()
+}
+
 class LoginController : UIViewController {
     
     private var vm = LoginViewModel()
-    
+    weak var delegate : AuthDelegate?
     //MARK: - Parts
     
     private let iconImageView : UIImageView = {
@@ -122,12 +126,17 @@ class LoginController : UIViewController {
             
             homeVC.checkIfUserIsLoggedIn()
             
+            self.delegate?.AuthComplete()
+            
             self.dismiss(animated: true, completion: nil)
         }
     }
     
     @objc func handleShowUp() {
         let registVC = RegistrationController()
+        
+        /// for pass delegate to HomeController
+        registVC.delegate = delegate
         
         navigationController?.pushViewController(registVC, animated: true)
     }

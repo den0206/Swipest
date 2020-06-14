@@ -119,37 +119,46 @@ class HomeController : UIViewController {
         } else {
             /// already  log ins
             
-            fetchUsers()
-            
-            /// current
-            fetchUser()
+            fetchCurrentUserAndCards()
             
         }
     }
     
-    private func fetchUser() {
+
+
+    
+    func fetchUsers(currentUser : User) {
+        
+        print(currentUser)
+        Service.fetchUsers(currentUser: currentUser) { (users) in
+            
+            self.viewModels = users.map({CardViewModel(user: $0)})
+        }
+//        Service.fetchUsers { (users) in
+//            self.viewModels = users.map({CardViewModel(user: $0)})
+//
+////            var vms = [CardViewModel]()
+////            users.forEach { (user ) in
+////                let vm = CardViewModel(user: user)
+////                vms.append(vm)
+////
+////                if users.count == vms.count {
+////
+////                    self.viewModels = vms
+////                }
+////            }
+//        }
+    }
+    
+    func fetchCurrentUserAndCards() {
         guard let currentId = Auth.auth().currentUser?.uid else {return}
+        
+        /// set current User
         Service.fetchUser(uid: currentId) { (user) in
             
             self.user = user
-        }
-    }
-
-    
-    func fetchUsers() {
-        Service.fetchUsers { (users) in
-            self.viewModels = users.map({CardViewModel(user: $0)})
-            
-//            var vms = [CardViewModel]()
-//            users.forEach { (user ) in
-//                let vm = CardViewModel(user: user)
-//                vms.append(vm)
-//
-//                if users.count == vms.count {
-//
-//                    self.viewModels = vms
-//                }
-//            }
+            /// sert vardViewModels
+            self.fetchUsers(currentUser: user)
         }
     }
     
@@ -166,6 +175,7 @@ class HomeController : UIViewController {
     func presentLoginVC() {
         DispatchQueue.main.async {
             let loginVC = LoginController()
+            loginVC.delegate = self
             let nav = UINavigationController(rootViewController: loginVC)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
@@ -305,4 +315,15 @@ extension HomeController : ProfileControllerDelegate {
     
 }
 
+//MARK: - Auth Delegate
+
+extension HomeController : AuthDelegate {
+    func AuthComplete() {
+        
+        dismiss(animated: true, completion: nil)
+        fetchCurrentUserAndCards()
+    }
+    
+    
+}
 

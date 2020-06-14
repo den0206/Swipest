@@ -31,7 +31,7 @@ struct User {
         self.profileImageUrl = dictionary[kPROFILE_IMAGES] as? [String] ?? [String]()
         self.profession = dictionary[kPROFESSION] as? String ?? ""
         self.minSeekingAge = dictionary[kMIMSEEKING] as? Int ?? 18
-        self.maxSeekingAge = dictionary[kMIMSEEKING] as? Int ?? 40
+        self.maxSeekingAge = dictionary[kMAXSEEKING] as? Int ?? 40
         
         
     }
