@@ -22,15 +22,17 @@ class HomeController : UIViewController {
     
     //MARK: - Parts
     private let topStack = HomeNavigationStackView()
-    
+    private let bottomStack = BottomControlsStackView()
+    private var topCardView : CardView?
+    private var cardViews = [CardView]()
+
     private let deckView : UIView = {
         let view = UIView()
-        view.backgroundColor = .systemPink
-        view.layer.cornerRadius = 5
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 10
         return view
     }()
     
-    private let bottomStack = BottomControlsStackView()
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +55,7 @@ class HomeController : UIViewController {
         let stack = UIStackView(arrangedSubviews: [topStack ,deckView ,bottomStack])
         
         topStack.delegate = self
+        bottomStack.delegate = self
         
         stack.axis = .vertical
 
@@ -71,11 +74,38 @@ class HomeController : UIViewController {
             let cardView = CardView(viewModel: vm)
             
             cardView.delegate = self
+//            cardViews.append(cardView)
             deckView.addSubview(cardView)
             cardView.fillSuperview()
         }
+         
+        cardViews = deckView.subviews.map({($0 as? CardView)!})
+        print(cardViews)
+        topCardView = cardViews.last
+        
         
 
+    }
+    
+    func performSwipeAnimation(sholdLIke : Bool) {
+        
+        let translation : CGFloat = sholdLIke ? 700 : -700
+        
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+            
+            /// swipe Animartion
+            self.topCardView?.frame = CGRect(x: translation, y: 0, width: (self.topCardView?.frame.width)!, height: (self.topCardView?.frame.height)!)
+            
+        }) { (_) in
+            self.topCardView?.removeFromSuperview()
+            
+            guard let topCard = self.topCardView else {return}
+            
+            guard !self.cardViews.isEmpty else {return}
+            
+            self.cardViews.remove(at: self.cardViews.count - 1)
+            self.topCardView = self.cardViews.last
+        }
     }
     
     //MARK: - API
@@ -190,6 +220,43 @@ extension HomeController : SettingViewControllerDelegate {
         /// update
         controller.dismiss(animated: true, completion: nil)
         self.user = user
+    }
+    
+    
+}
+
+//MARK: - Button Actuions
+
+extension HomeController : BottomControlsStackViewDelegate {
+    
+    func handleLike() {
+        
+        guard let topCard = topCardView else {return}
+        
+        performSwipeAnimation(sholdLIke: true)
+        Service.saveSwipe(user: topCard.viewModel.user, isLike: true)
+        
+        
+//        guard let topCard = topCardView else {return}
+//
+//        guard !cardViews.isEmpty else {return}
+//
+//        cardViews.remove(at: cardViews.count - 1)
+//        topCardView = cardViews.last
+        
+    }
+    
+    func handleDislike() {
+        guard let topCard = topCardView else {return}
+
+        performSwipeAnimation(sholdLIke: false)
+        Service.saveSwipe(user: topCard.viewModel.user, isLike: false)
+
+
+    }
+    
+    func handleRefresh() {
+        print("Refresh")
     }
     
     

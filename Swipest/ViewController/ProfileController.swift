@@ -32,6 +32,12 @@ class ProfileController : UIViewController {
         return cv
     }()
     
+    private let blueView : UIVisualEffectView = {
+        let blur = UIBlurEffect(style: .regular)
+        let view = UIVisualEffectView(effect: blur)
+        return view
+    }()
+    
     private let dismissButton : UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "dismiss_down_arrow").withRenderingMode(.alwaysOriginal), for: .normal)
@@ -123,6 +129,9 @@ class ProfileController : UIViewController {
         
         view.addSubview(infoStack)
         infoStack.anchor(top : collectioView.bottomAnchor, left: view.leftAnchor,right: view.rightAnchor,paddingTop: 12, paddingLeft: 12,paddingRight: 12)
+        
+        view.addSubview(blueView)
+        blueView.anchor(top : view.topAnchor, left: view.leftAnchor,bottom: view.safeAreaLayoutGuide.topAnchor,right: view.rightAnchor)
         
         configureBottomControls()
         

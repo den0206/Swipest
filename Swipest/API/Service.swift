@@ -79,6 +79,27 @@ struct Service {
     }
     
     
+    static func saveSwipe(user : User, isLike : Bool) {
+        
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        
+//        let shouldLike = isLike ? 1 : 0
+        
+        firebaseReference(.Swipe).document(uid).getDocument { (snapshot, error) in
+            
+            let date = [user.uid : isLike]
+            
+            guard let snapshot = snapshot else {return}
+            
+            if snapshot.exists {
+                firebaseReference(.Swipe).document(uid).updateData(date)
+            } else {
+                firebaseReference(.Swipe).document(uid).setData(date)
+
+            }
+        }
+    }
+    
     static func uploadImage(image : UIImage, completion :  @escaping(String) -> Void) {
         
         guard let imageData = image.jpegData(compressionQuality: 0.3) else {return}

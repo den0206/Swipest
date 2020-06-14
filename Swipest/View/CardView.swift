@@ -27,7 +27,7 @@ class CardView : UIView {
     private let gradientLayer = CAGradientLayer()
     private let barStackView = UIStackView()
     
-    private let viewModel : CardViewModel
+    let viewModel : CardViewModel
     
     private let profileImageView : UIImageView = {
         let iv = UIImageView()
