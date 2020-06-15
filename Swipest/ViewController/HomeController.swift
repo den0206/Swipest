@@ -201,8 +201,9 @@ class HomeController : UIViewController {
     
     func presentMatchView(matchUser : User) {
         guard let currentUser = self.user else {return}
-        
-        let matchVC = MatchView(currentUser: currentUser, matchUser: matchUser)
+        let viewModel = MatchViewModel(currentUser: currentUser, matchUser: matchUser)
+        let matchVC = MatchView(viewModel: viewModel)
+        matchVC.delegate = self
         
         view.addSubview(matchVC)
         matchVC.fillSuperview()
@@ -340,6 +341,14 @@ extension HomeController : ProfileControllerDelegate {
     
 }
 
+extension HomeController :  MatchViewDelegate {
+    func tappedMessage(_ view: MatchView, sendToUser: User) {
+        /// present MessageVC
+        print(sendToUser.name)
+    }
+    
+    
+}
 //MARK: - Auth Delegate
 
 extension HomeController : AuthDelegate {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		21A4E37896CD318F4CE2E802 /* Pods_Swipest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B37C92D9DA8640305FD838 /* Pods_Swipest.framework */; };
 		3A0499682493D98A00851FF9 /* SettingFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0499672493D98A00851FF9 /* SettingFooterView.swift */; };
+		3A130BC72497B53700038E0B /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A130BC62497B53700038E0B /* MatchViewModel.swift */; };
 		3A3694F72495095800BBF74F /* SegmentBarView .swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3694F62495095800BBF74F /* SegmentBarView .swift */; };
 		3A373737248B404900FFD64D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A373736248B404900FFD64D /* User.swift */; };
 		3A373739248B410400FFD64D /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A373738248B410400FFD64D /* CardViewModel.swift */; };
@@ -46,6 +47,7 @@
 		10B37C92D9DA8640305FD838 /* Pods_Swipest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swipest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BD6FA33F603444F6BE90905 /* Pods-Swipest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swipest.release.xcconfig"; path = "Target Support Files/Pods-Swipest/Pods-Swipest.release.xcconfig"; sourceTree = "<group>"; };
 		3A0499672493D98A00851FF9 /* SettingFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFooterView.swift; sourceTree = "<group>"; };
+		3A130BC62497B53700038E0B /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
 		3A3694F62495095800BBF74F /* SegmentBarView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SegmentBarView .swift"; sourceTree = "<group>"; };
 		3A373736248B404900FFD64D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3A373738248B410400FFD64D /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				3A3E2100248B80DD00CC8C71 /* AuthViewModel.swift */,
 				3ADBD0CC2490F0F700F24BA8 /* SettingViewModel.swift */,
 				3ADAC32124950286006E2F2C /* ProfileViewModel.swift */,
+				3A130BC62497B53700038E0B /* MatchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				3AD7371324964FBA00594B13 /* MatchView.swift in Sources */,
 				3AB9F81A248B2336000D2FBD /* CardView.swift in Sources */,
 				3AAF518E248CA18D00E05CD5 /* AuthService.swift in Sources */,
+				3A130BC72497B53700038E0B /* MatchViewModel.swift in Sources */,
 				3A4A8C902494C4740038E3F6 /* ProfileCell.swift in Sources */,
 				3AB95FB8248FB66B00E99401 /* SettingViewController.swift in Sources */,
 				3ADBD0CD2490F0F700F24BA8 /* SettingViewModel.swift in Sources */,
