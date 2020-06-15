@@ -22,12 +22,13 @@ class MatchView : UIView {
         return iv
     }()
     
-    private let descriptonLabel : UILabel = {
+    private lazy var descriptonLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 20)
         label.numberOfLines = 0
+        label.text = "\(matchUser.name) さんと マッチしました."
         return label
     }()
     
@@ -37,6 +38,8 @@ class MatchView : UIView {
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.borderColor = UIColor.white.cgColor
+        iv.setDimensions(height: 140, width: 140)
+        iv.layer.cornerRadius = 140 / 2
         iv.layer.borderWidth = 2
         return iv
     }()
@@ -47,12 +50,14 @@ class MatchView : UIView {
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.borderColor = UIColor.white.cgColor
+        iv.setDimensions(height: 140, width: 140)
+        iv.layer.cornerRadius = 140 / 2
         iv.layer.borderWidth = 2
         return iv
     }()
     
     private let sendMessageButton : UIButton = {
-        let button = UIButton(type: .system)
+        let button = SendMessageButton(type: .system)
         button.setTitle("Send Message", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(didTapMessage), for: .touchUpInside)
@@ -60,7 +65,7 @@ class MatchView : UIView {
     }()
     
     private let keepSwipingButton : UIButton = {
-        let button = UIButton(type: .system)
+        let button = KeepSwipingButton(type: .system)
         button.setTitle("Keep Swiping", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(didTapSwiping), for: .touchUpInside)
@@ -83,6 +88,7 @@ class MatchView : UIView {
         super.init(frame: .zero)
         
         configureBlurView()
+        configureUI()
     }
     
    
@@ -100,6 +106,14 @@ class MatchView : UIView {
         print("Swip")
     }
     
+    @objc func handleDismiss() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.alpha = 0
+        }) { (_) in
+            self.removeFromSuperview()
+        }
+    }
+    
     //MARK: - UI
     
     private func configureUI() {
@@ -109,7 +123,25 @@ class MatchView : UIView {
             view.alpha = 1
         }
         
-        /// set constraits
+        /// set constraits (based imageView)
+        currentUserImageView.anchor(left : centerXAnchor, paddingLeft: 16)
+        currentUserImageView.centerY(inView: self)
+        matchUserImageView.anchor(right : centerXAnchor, paddingRight: 16)
+        matchUserImageView.centerY(inView: self)
+        
+        sendMessageButton.anchor(top : currentUserImageView.bottomAnchor,left: leftAnchor,right: rightAnchor,paddingTop: 32,paddingLeft: 48,paddingRight: 48)
+        sendMessageButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        keepSwipingButton.anchor(top : sendMessageButton.bottomAnchor,left: leftAnchor,right: rightAnchor,paddingTop: 16,paddingLeft: 48,paddingRight: 48)
+        keepSwipingButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        descriptonLabel.anchor(left : leftAnchor,bottom: currentUserImageView.topAnchor, right: rightAnchor,paddingBottom: 32)
+        
+        matchImageView.anchor(bottom :descriptonLabel.topAnchor,paddingBottom: 16)
+        matchImageView.setDimensions(height: 80, width: 300)
+        matchImageView.centerX(inView: self)
+        
+        
         
         
     }
@@ -117,6 +149,9 @@ class MatchView : UIView {
     /// dark blurView
     
     func configureBlurView() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleDismiss))
+        visualEffectView.addGestureRecognizer(tap)
+        
         addSubview(visualEffectView)
         visualEffectView.fillSuperview()
         
@@ -126,4 +161,6 @@ class MatchView : UIView {
             self.visualEffectView.alpha = 1
         }, completion: nil)
     }
+    
+   
 }

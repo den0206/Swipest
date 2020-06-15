@@ -31,6 +31,7 @@
 		3A8C0C45248CA7F5001B26F5 /* Constracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C0C44248CA7F5001B26F5 /* Constracts.swift */; };
 		3A8C0C47248CAA81001B26F5 /* FirebaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C0C46248CAA81001B26F5 /* FirebaseReference.swift */; };
 		3AAF518E248CA18D00E05CD5 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAF518D248CA18D00E05CD5 /* AuthService.swift */; };
+		3AB094802497A3B80066320B /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB0947F2497A3B80066320B /* GradientButton.swift */; };
 		3AB95FB8248FB66B00E99401 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB95FB7248FB66B00E99401 /* SettingViewController.swift */; };
 		3AB95FBA248FBB5500E99401 /* SettingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB95FB9248FBB5500E99401 /* SettingsHeader.swift */; };
 		3AB9F818248B1FA8000D2FBD /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9F817248B1FA8000D2FBD /* BottomControlsStackView.swift */; };
@@ -69,6 +70,7 @@
 		3A8C0C44248CA7F5001B26F5 /* Constracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constracts.swift; sourceTree = "<group>"; };
 		3A8C0C46248CAA81001B26F5 /* FirebaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReference.swift; sourceTree = "<group>"; };
 		3AAF518D248CA18D00E05CD5 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		3AB0947F2497A3B80066320B /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		3AB95FB7248FB66B00E99401 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		3AB95FB9248FBB5500E99401 /* SettingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeader.swift; sourceTree = "<group>"; };
 		3AB9F817248B1FA8000D2FBD /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				3A4A8C8F2494C4740038E3F6 /* ProfileCell.swift */,
 				3A3694F62495095800BBF74F /* SegmentBarView .swift */,
 				3AD7371224964FBA00594B13 /* MatchView.swift */,
+				3AB0947F2497A3B80066320B /* GradientButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				3A373737248B404900FFD64D /* User.swift in Sources */,
 				3ADBD0CB2490EF9F00F24BA8 /* SettingCell.swift in Sources */,
 				3A8C0C47248CAA81001B26F5 /* FirebaseReference.swift in Sources */,
+				3AB094802497A3B80066320B /* GradientButton.swift in Sources */,
 				3A8C0C43248CA2C5001B26F5 /* Service.swift in Sources */,
 				3A6092EA2487D3F4001A7267 /* SceneDelegate.swift in Sources */,
 				3A3E2101248B80DD00CC8C71 /* AuthViewModel.swift in Sources */,
