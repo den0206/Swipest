@@ -36,33 +36,36 @@ struct Service {
         
         let query = firebaseReference(.User).whereField(kAGE, isGreaterThanOrEqualTo:  minAge).whereField(kAGE, isLessThanOrEqualTo : maxAge)
         
-        query.getDocuments { (snapshot, error) in
-            
-            guard let snapshot = snapshot else {return}
-            
-            if !snapshot.isEmpty {
-                for doc in snapshot.documents {
-                    
-                    let dic = doc.data()
-                    let user = User(dictionary: dic)
-                    
-                    /// expect currentUser
-                    guard user.uid != Auth.auth().currentUser?.uid else { continue }
-                    
-                    users.append(user)
-                    
-                    /// avoid multipleTime
-                    if users.count  == snapshot.documents.count - 1 {
-                        completion(users)
+        fetchSwipes { (swipedUserIds) in
+            query.getDocuments { (snapshot, error) in
+                
+                guard let snapshot = snapshot else {return}
+                
+                if !snapshot.isEmpty {
+                    for doc in snapshot.documents {
+                        
+                        let dic = doc.data()
+                        let user = User(dictionary: dic)
+                        
+                        /// expect currentUser
+                        guard user.uid != Auth.auth().currentUser?.uid else { continue }
+                        /// except already Swipe
+                        guard swipedUserIds[user.uid] == nil else {continue}
+                        
+                        users.append(user)
+                        
+                        /// avoid multipleTime
+                        if users.count  == snapshot.documents.count - 1 {
+                            //                            completion(users)
+                        }
+                        
                     }
                     
+                    completion(users)
+                    
                 }
-                
-//                completion(users)
-
             }
         }
-        
         
     }
     
@@ -104,6 +107,21 @@ struct Service {
                 firebaseReference(.Swipe).document(uid).setData(date,completion: completion)
 
             }
+        }
+    }
+    
+    private static func fetchSwipes(completion :  @escaping([String : Bool]) -> Void) {
+    
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        
+        firebaseReference(.Swipe).document(uid).getDocument { (snapshot, error) in
+            guard let date = snapshot?.data() as? [String : Bool] else {
+                completion([String : Bool]())
+                return
+            }
+            
+            completion(date)
+            
         }
     }
     
