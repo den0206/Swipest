@@ -41,6 +41,7 @@
 		3ADAC32224950286006E2F2C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAC32124950286006E2F2C /* ProfileViewModel.swift */; };
 		3ADBD0CB2490EF9F00F24BA8 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADBD0CA2490EF9F00F24BA8 /* SettingCell.swift */; };
 		3ADBD0CD2490F0F700F24BA8 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADBD0CC2490F0F700F24BA8 /* SettingViewModel.swift */; };
+		3AF36FC124994D6B00C79090 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF36FC024994D6B00C79090 /* MessagesController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		3ADAC32124950286006E2F2C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		3ADBD0CA2490EF9F00F24BA8 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		3ADBD0CC2490F0F700F24BA8 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		3AF36FC024994D6B00C79090 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		ADC24F9E9B8BF9D815A8A9FB /* Pods-Swipest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swipest.debug.xcconfig"; path = "Target Support Files/Pods-Swipest/Pods-Swipest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -206,6 +208,7 @@
 				3A6093022487D4B7001A7267 /* HomeController.swift */,
 				3AB95FB7248FB66B00E99401 /* SettingViewController.swift */,
 				3A4A8C8D2494C16C0038E3F6 /* ProfileController.swift */,
+				3AF36FC024994D6B00C79090 /* MessagesController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				3A6093032487D4B7001A7267 /* HomeController.swift in Sources */,
 				3A8C0C45248CA7F5001B26F5 /* Constracts.swift in Sources */,
 				3AB95FBA248FBB5500E99401 /* SettingsHeader.swift in Sources */,
+				3AF36FC124994D6B00C79090 /* MessagesController.swift in Sources */,
 				3A6092EC2487D3F4001A7267 /* ViewController.swift in Sources */,
 				3A6093092487D6B9001A7267 /* HomeNavigationStack.swift in Sources */,
 				3A373739248B410400FFD64D /* CardViewModel.swift in Sources */,
