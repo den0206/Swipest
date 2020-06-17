@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		21A4E37896CD318F4CE2E802 /* Pods_Swipest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B37C92D9DA8640305FD838 /* Pods_Swipest.framework */; };
+		3A030E54249A4AA700D3AC59 /* MatchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A030E53249A4AA700D3AC59 /* MatchHeaderView.swift */; };
+		3A030E56249A4D4600D3AC59 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A030E55249A4D4600D3AC59 /* MatchCell.swift */; };
+		3A030E58249A517000D3AC59 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A030E57249A517000D3AC59 /* Match.swift */; };
 		3A0499682493D98A00851FF9 /* SettingFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0499672493D98A00851FF9 /* SettingFooterView.swift */; };
 		3A130BC72497B53700038E0B /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A130BC62497B53700038E0B /* MatchViewModel.swift */; };
 		3A3694F72495095800BBF74F /* SegmentBarView .swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3694F62495095800BBF74F /* SegmentBarView .swift */; };
@@ -47,6 +50,9 @@
 /* Begin PBXFileReference section */
 		10B37C92D9DA8640305FD838 /* Pods_Swipest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swipest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BD6FA33F603444F6BE90905 /* Pods-Swipest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swipest.release.xcconfig"; path = "Target Support Files/Pods-Swipest/Pods-Swipest.release.xcconfig"; sourceTree = "<group>"; };
+		3A030E53249A4AA700D3AC59 /* MatchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeaderView.swift; sourceTree = "<group>"; };
+		3A030E55249A4D4600D3AC59 /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
+		3A030E57249A517000D3AC59 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		3A0499672493D98A00851FF9 /* SettingFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFooterView.swift; sourceTree = "<group>"; };
 		3A130BC62497B53700038E0B /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
 		3A3694F62495095800BBF74F /* SegmentBarView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SegmentBarView .swift"; sourceTree = "<group>"; };
@@ -166,6 +172,8 @@
 				3A3694F62495095800BBF74F /* SegmentBarView .swift */,
 				3AD7371224964FBA00594B13 /* MatchView.swift */,
 				3AB0947F2497A3B80066320B /* GradientButton.swift */,
+				3A030E53249A4AA700D3AC59 /* MatchHeaderView.swift */,
+				3A030E55249A4D4600D3AC59 /* MatchCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -174,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				3A373736248B404900FFD64D /* User.swift */,
+				3A030E57249A517000D3AC59 /* Match.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -347,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A37373C248B497F00FFD64D /* LoginController.swift in Sources */,
+				3A030E54249A4AA700D3AC59 /* MatchHeaderView.swift in Sources */,
 				3A3E20FF248B73F600CC8C71 /* AuthButton.swift in Sources */,
 				3A6093072487D661001A7267 /* Extensions.swift in Sources */,
 				3A6093032487D4B7001A7267 /* HomeController.swift in Sources */,
@@ -370,11 +380,13 @@
 				3AB9F81A248B2336000D2FBD /* CardView.swift in Sources */,
 				3AAF518E248CA18D00E05CD5 /* AuthService.swift in Sources */,
 				3A130BC72497B53700038E0B /* MatchViewModel.swift in Sources */,
+				3A030E58249A517000D3AC59 /* Match.swift in Sources */,
 				3A4A8C902494C4740038E3F6 /* ProfileCell.swift in Sources */,
 				3AB95FB8248FB66B00E99401 /* SettingViewController.swift in Sources */,
 				3ADBD0CD2490F0F700F24BA8 /* SettingViewModel.swift in Sources */,
 				3A37373E248B498B00FFD64D /* RegistrationController.swift in Sources */,
 				3AB9F818248B1FA8000D2FBD /* BottomControlsStackView.swift in Sources */,
+				3A030E56249A4D4600D3AC59 /* MatchCell.swift in Sources */,
 				3A3694F72495095800BBF74F /* SegmentBarView .swift in Sources */,
 				3A4A8C8E2494C16C0038E3F6 /* ProfileController.swift in Sources */,
 			);

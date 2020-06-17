@@ -12,6 +12,7 @@ private let reuseIdentifer = "MessageCell"
 class MessagesController : UITableViewController {
     
     private let user : User
+    private let headerView = MatchHeaderView()
     
     init(user : User) {
         self.user = user
@@ -37,6 +38,10 @@ class MessagesController : UITableViewController {
         tableView.tableFooterView = UIView()
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifer)
+        
+        headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
+        
+        tableView.tableHeaderView = headerView
         
         
     }

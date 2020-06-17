@@ -29,3 +29,7 @@ public let kMAXSEEKING = "maxSeekingAge"
 public let kAGE = "age"
 public let kFOLLOWING = "FOLLOWING"
 public let kFOLLOWERS = "FOLLOWER"
+
+//MARK: - Collection
+
+public let kMATCHES = "Matches"

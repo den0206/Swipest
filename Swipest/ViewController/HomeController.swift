@@ -171,8 +171,13 @@ class HomeController : UIViewController {
             
             Service.checkMatchExist(user: user) { (didMatch) in
                 
-                print("Match")
                 self.presentMatchView(matchUser: user)
+                
+                /// add Firestore each user
+                guard let currentUser = self.user else {return}
+                
+                Service.uploadMatch(currentUser: currentUser, mathedUser: user)
+                
             }
         }
         

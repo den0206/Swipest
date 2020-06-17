@@ -84,7 +84,7 @@ struct Service {
                     kMAXSEEKING : user.maxSeekingAge
             ] as [String : Any]
         
-//        print(date)
+        //        print(date)
         
         firebaseReference(.User).document(user.uid).updateData(date, completion: completion)
         
@@ -94,7 +94,7 @@ struct Service {
     static func saveSwipe(user : User, isLike : Bool, completion : ((Error?) -> Void)?) {
         
         guard let uid = Auth.auth().currentUser?.uid else {return}
-                
+        
         firebaseReference(.Swipe).document(uid).getDocument { (snapshot, error) in
             
             let date = [user.uid : isLike]
@@ -105,13 +105,13 @@ struct Service {
                 firebaseReference(.Swipe).document(uid).updateData(date, completion: completion)
             } else {
                 firebaseReference(.Swipe).document(uid).setData(date,completion: completion)
-
+                
             }
         }
     }
     
     private static func fetchSwipes(completion :  @escaping([String : Bool]) -> Void) {
-    
+        
         guard let uid = Auth.auth().currentUser?.uid else {return}
         
         firebaseReference(.Swipe).document(uid).getDocument { (snapshot, error) in
@@ -138,6 +138,31 @@ struct Service {
             complation(didMatch)
             
         }
+        
+    }
+    
+    static func uploadMatch(currentUser : User, mathedUser : User) {
+        
+        guard let profileImageUrl = mathedUser.profileImageUrl.first else {return}
+        guard let currentImageUrl = currentUser.profileImageUrl.first else {return}
+        
+        //MARK: - Add each DB
+        /// add currentUser DB
+        let matchedUserDate = [ kUSERID : mathedUser.uid,
+                                kFULLNAME : mathedUser.name,
+                                kPROFILE_IMAGES : profileImageUrl
+        ]
+        
+        firebaseReference(.Match).document(currentUser.uid).collection(kMATCHES).document(mathedUser.uid).setData(matchedUserDate)
+        
+        /// add matchUser DB
+        
+        let currentUserDate = [ kUSERID : currentUser.uid,
+                                kFULLNAME : currentUser.name,
+                                kPROFILE_IMAGES : currentImageUrl
+        ]
+        
+        firebaseReference(.Match).document(mathedUser.uid).collection(kMATCHES).document(currentUser.uid).setData(currentUserDate)
         
     }
     

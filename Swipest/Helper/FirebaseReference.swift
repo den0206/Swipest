@@ -11,6 +11,7 @@ import FirebaseFirestore
 enum Reference : String {
     case User
     case Swipe
+    case Match
 }
 
 func firebaseReference(_ reference : Reference) -> CollectionReference {
