@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MatchCell : UICollectionViewCell {
+    
+    var viewModel : MatchCellViewModel! {
+        didSet {
+            configureCell()
+        }
+    }
     
     //MARK: - Parts
     
@@ -32,7 +39,7 @@ class MatchCell : UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 14,weight: .semibold)
         label.textColor = .darkGray
         label.textAlignment = .center
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         
         return label
     }()
@@ -48,7 +55,12 @@ class MatchCell : UICollectionViewCell {
         
         addSubview(stack)
         stack.fillSuperview()
+        
+    }
     
+    private func configureCell() {
+        usernameLabel.text = viewModel.nameText
+        profileImageView.sd_setImage(with: viewModel.profileImageUrl)
     }
     
     required init?(coder: NSCoder) {

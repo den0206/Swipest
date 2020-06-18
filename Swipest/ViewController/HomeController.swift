@@ -316,7 +316,13 @@ extension HomeController : BottomControlsStackViewDelegate {
     }
     
     func handleRefresh() {
-        print("Refresh")
+        /// reset
+        guard let user = self.user else {return}
+        Service.fetchUsers(currentUser: user) { (users) in
+            
+            self.viewModels = users.map({CardViewModel(user: $0)})
+            
+        }
     }
     
     

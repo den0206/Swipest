@@ -14,6 +14,7 @@ class MessagesController : UITableViewController {
     private let user : User
     private let headerView = MatchHeaderView()
     
+    
     init(user : User) {
         self.user = user
         super.init(style: .plain)
@@ -28,6 +29,7 @@ class MessagesController : UITableViewController {
         
         congigureNav()
         configureTableView()
+        fetchMathes()
         
     }
     
@@ -42,6 +44,8 @@ class MessagesController : UITableViewController {
         headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
         
         tableView.tableHeaderView = headerView
+        
+        headerView.delegate = self
         
         
     }
@@ -64,6 +68,14 @@ class MessagesController : UITableViewController {
         icon.tintColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         
         navigationItem.titleView = icon
+    }
+    
+    //MARK: - API
+    
+    private func fetchMathes() {
+        Service.fetchMatches { (matches) in
+            self.headerView.matches = matches
+        }
     }
     
     //MARK: - Actions
@@ -101,4 +113,13 @@ extension MessagesController {
         
         return view
     }
+}
+
+extension MessagesController : MatchHeaderViewDelegate {
+    
+    func matchHeader(_ header: MatchHeaderView, mathedUID: String) {
+        print(mathedUID)
+    }
+    
+    
 }

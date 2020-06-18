@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 protocol AuthDelegate : class {
     func AuthComplete()
@@ -113,11 +114,15 @@ class LoginController : UIViewController {
         guard let email = emailTextField.text else {return}
         guard let password = passwordTextField.text else {return}
         
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Loading..."
+        hud.show(in: view)
         
         AuthService.loginUser(email: email, password: password) { (result, error) in
             
             if error != nil {
                 print(error!.localizedDescription)
+                hud.dismiss()
                 return
             }
             
@@ -126,6 +131,8 @@ class LoginController : UIViewController {
             
             homeVC.checkIfUserIsLoggedIn()
             
+            hud.dismiss()
+
             self.delegate?.AuthComplete()
             
             self.dismiss(animated: true, completion: nil)

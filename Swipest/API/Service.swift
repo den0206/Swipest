@@ -11,6 +11,8 @@ import Firebase
 
 struct Service {
     
+    /// Fetch
+    
     static func fetchUser(uid : String, completion :  @escaping(User) -> Void) {
         
         firebaseReference(.User).document(uid).getDocument { (snapshot, error) in
@@ -69,7 +71,32 @@ struct Service {
         
     }
     
-    //MARK: - Helpers
+    static func fetchMatches(completion :  @escaping([Match]) -> Void) {
+        
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        
+        firebaseReference(.Match).document(uid).collection(kMATCHES).getDocuments { (snapshot, error) in
+            
+            guard let snapshot = snapshot else {return}
+            
+            let matches = snapshot.documents.map({Match(dictionary: $0.data())})
+            completion(matches)
+            
+//            var matches1 = [Match]()
+//            snapshot.documents.forEach { (document) in
+//
+//                let data = document.data()
+//                let match = Match(dictionary: data)
+//
+//                matches1.append(match)
+//            }
+//
+//            completion(matches1)
+        }
+        
+    }
+    
+    //MARK: - Uploads
     
     static func saveUserDate(user : User, completion :  @escaping(Error?) -> Void) {
         
@@ -140,6 +167,9 @@ struct Service {
         }
         
     }
+    
+    
+    /// upload
     
     static func uploadMatch(currentUser : User, mathedUser : User) {
         

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class RegistrationController : UIViewController {
     
@@ -121,16 +122,23 @@ class RegistrationController : UIViewController {
         
         print(credential)
         
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Loading..."
+        hud.show(in: view)
+        
         AuthService.registerUser(credential: credential) { (error) in
             
             if error != nil {
                 print(error!.localizedDescription)
+                hud.dismiss()
                 return
             }
             
             guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else {return}
             guard let homeVC = window.rootViewController as? HomeController else {return}
             
+            hud.dismiss()
+
             homeVC.checkIfUserIsLoggedIn()
             
             self.delegate?.AuthComplete()

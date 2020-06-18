@@ -9,7 +9,19 @@
 import UIKit
 private let reuseIdentifer = "MatchCell"
 
+protocol MatchHeaderViewDelegate : class {
+    func matchHeader(_ header : MatchHeaderView, mathedUID : String)
+}
+
 class MatchHeaderView : UICollectionReusableView {
+    
+    var delegate : MatchHeaderViewDelegate?
+    
+    var matches = [Match]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     private let newMatchesLabel : UILabel = {
         
@@ -63,16 +75,24 @@ class MatchHeaderView : UICollectionReusableView {
 
 extension MatchHeaderView : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return matches.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifer, for: indexPath) as! MatchCell
         
+        let viewModel = MatchCellViewModel(match: matches[indexPath.item])
+        cell.viewModel = viewModel
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let uid = matches[indexPath.item].uid
+        
+        delegate?.matchHeader(self, mathedUID: uid)
+    }
     
 }
 
@@ -80,6 +100,6 @@ extension MatchHeaderView : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 80, height: 108)
+        return CGSize(width: 80, height: 120)
     }
 }
